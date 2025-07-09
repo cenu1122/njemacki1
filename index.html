@@ -1,105 +1,115 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Nemački Jezik - Obuka</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: row;
-            margin: 0;
-            padding: 20px;
-            background: #f0f4f8;
-            height: 100vh;
-            box-sizing: border-box;
-        }
-        .teacher {
-            flex: 2;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.1);
-            margin-right: 20px;
-        }
-        .avatar {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .avatar img {
-            border-radius: 50%;
-            width: 180px;
-            height: 180px;
-            object-fit: cover;
-            box-shadow: 0 0 10px rgba(0,0,0,0.2);
-            margin-bottom: 15px;
-        }
-        .lesson-title {
-            font-size: 24px;
-            margin-bottom: 15px;
-            color: #2c3e50;
-        }
-        .lesson-text {
-            font-size: 18px;
-            line-height: 1.6;
-            color: #34495e;
-        }
-        button {
-            margin-top: 20px;
-            background-color: #2980b9;
-            border: none;
-            color: white;
-            padding: 12px 20px;
-            font-size: 16px;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        button:hover {
-            background-color: #3498db;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nemački Jezik - Obuka sa Glasom i Avatarom</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: row;
+      margin: 0;
+      padding: 20px;
+      background: #f0f4f8;
+      height: 100vh;
+      box-sizing: border-box;
+    }
+    .teacher {
+      flex: 2;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      margin-right: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .avatar {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .avatar img {
+      border-radius: 50%;
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      margin-bottom: 15px;
+    }
+    .lesson-title {
+      font-size: 24px;
+      margin-bottom: 15px;
+      color: #2c3e50;
+    }
+    .lesson-text {
+      font-size: 18px;
+      line-height: 1.6;
+      color: #34495e;
+      flex-grow: 1;
+    }
+    button {
+      margin-top: 20px;
+      background-color: #2980b9;
+      border: none;
+      color: white;
+      padding: 12px 20px;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #3498db;
+    }
+  </style>
 </head>
 <body>
 
-    <div class="teacher">
-        <div class="lesson-title">Dobrodošli na čas nemačkog jezika!</div>
-        <div class="lesson-text" id="lesson-content">
-            Hallo! Heute lernen wir einige einfache deutsche Sätze.  
-            <br><br>
-            Beispiel: <strong>Guten Morgen!</strong> bedeutet „Dobro jutro!“
-        </div>
-        <button onclick="nextLesson()">Sledeća lekcija</button>
+  <div class="teacher">
+    <div class="lesson-title">Dobrodošli na čas nemačkog jezika!</div>
+    <div class="lesson-text" id="lesson-content">
+      Hallo! Heute lernen wir einige einfache deutsche Sätze.<br><br>Beispiel: <strong>Guten Morgen!</strong> bedeutet „Dobro jutro!“
     </div>
+    <button onclick="nextLesson()">Sledeća lekcija</button>
+    <button onclick="speakLesson()">Pročitaj lekciju naglas</button>
+  </div>
 
-    <div class="avatar">
-        <img src="https://cdn-icons-png.flaticon.com/512/4712/4712011.png" alt="Avatar ChatGPT" />
-        <div>Vaš učitelj (ChatGPT)</div>
-    </div>
+  <div class="avatar">
+    <img src="https://cdn-icons-png.flaticon.com/512/4712/4712011.png" alt="Avatar ChatGPT" />
+    <div>Vaš učitelj (ChatGPT)</div>
+  </div>
 
-    <script>
-        const lessons = [
-            `Hallo! Heute lernen wir einige einfache deutsche Sätze.<br><br>Beispiel: <strong>Guten Morgen!</strong> bedeutet „Dobro jutro!“`,
-            `Der Satz „Wie geht's?“ bedeutet „Kako si?“ auf Serbisch.<br><br>Antwort: „Mir geht es gut.“ heißt „Dobro sam.“`,
-            `„Danke“ bedeutet „Hvala“.<br><br>Versuche es selbst zu sagen!`,
-            `Sehr gut! Jetzt lernen wir Zahlen:<br>1 - eins<br>2 - zwei<br>3 - drei`,
-            `Prima! Du bist auf dem besten Weg, Deutsch zu lernen!`
-        ];
-        
-        let currentLesson = 0;
+  <script>
+    const lessons = [
+      `Hallo! Heute lernen wir einige einfache deutsche Sätze.<br><br>Beispiel: <strong>Guten Morgen!</strong> bedeutet „Dobro jutro!“`,
+      `Der Satz „Wie geht's?“ bedeutet „Kako si?“ auf Serbisch.<br><br>Antwort: „Mir geht es gut.“ heißt „Dobro sam.“`,
+      `„Danke“ bedeutet „Hvala“.<br><br>Versuche es selbst zu sagen!`,
+      `Sehr gut! Jetzt lernen wir Zahlen:<br>1 - eins<br>2 - zwei<br>3 - drei`,
+      `Prima! Du bist auf dem besten Weg, Deutsch zu lernen!`
+    ];
+    
+    let currentLesson = 0;
 
-        function nextLesson() {
-            currentLesson++;
-            if (currentLesson >= lessons.length) {
-                currentLesson = 0;
-                alert("Čestitam! Završio/la si sve lekcije.");
-            }
-            document.getElementById("lesson-content").innerHTML = lessons[currentLesson];
-        }
-    </script>
+    function nextLesson() {
+      currentLesson++;
+      if (currentLesson >= lessons.length) {
+        currentLesson = 0;
+        alert("Čestitam! Završio/la si sve lekcije.");
+      }
+      document.getElementById("lesson-content").innerHTML = lessons[currentLesson];
+    }
+
+    function speakLesson() {
+      const text = document.getElementById("lesson-content").innerText;
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'de-DE'; // nemački jezik
+      speechSynthesis.speak(utterance);
+    }
+  </script>
 
 </body>
 </html>
