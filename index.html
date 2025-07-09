@@ -94,6 +94,7 @@
   </div>
 
   <div class="avatar">
+    <!-- Avatar sa sigurne i vidljive adrese -->
     <img src="https://cdn-icons-png.flaticon.com/512/4712/4712011.png" alt="Avatar ChatGPT" />
     <div>Vaš učitelj (ChatGPT)</div>
   </div>
@@ -146,9 +147,12 @@
       const text = document.getElementById("lesson-german").innerText;
       const utterance = new SpeechSynthesisUtterance(text);
       utterance.lang = 'de-DE'; // nemački jezik
+      utterance.rate = 0.6;      // sporiji izgovor
       speechSynthesis.speak(utterance);
     }
   </script>
 
 </body>
 </html>
+
+  
