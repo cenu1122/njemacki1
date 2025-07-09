@@ -1,58 +1,65 @@
 ﻿<!DOCTYPE html>
-<html lang="de">
+<html lang="bs">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Uči nemački besplatno</title>
+  <title>Online obuka njemačkog jezika</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f5f5f5; }
-    header { background-color: #003366; color: white; padding: 20px; text-align: center; }
-    main { padding: 20px; max-width: 800px; margin: auto; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-    section { margin-bottom: 40px; }
-    h1, h2 { color: #003366; }
-    .avatar-placeholder { width: 100%; height: 300px; background: #ccc; display: flex; align-items: center; justify-content: center; color: #666; font-size: 20px; border: 2px dashed #999; margin-bottom: 20px; }
-    footer { background: #003366; color: white; text-align: center; padding: 10px; }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      text-align: center;
+      padding: 40px;
+    }
+    .avatar {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #333;
+    }
+    h1 {
+      color: #333;
+    }
+    p {
+      font-size: 18px;
+      color: #555;
+    }
+    button {
+      padding: 12px 24px;
+      font-size: 18px;
+      background-color: #0077cc;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    .message {
+      margin-top: 30px;
+      font-size: 20px;
+      color: green;
+      display: none;
+    }
   </style>
 </head>
 <body>
-<img src="avatar.png" alt="Avatar" width="150" height="150" />
+  <img src="avatar.png" alt="Instruktor" class="avatar">
+  <h1>Dobrodošli na online kurs njemačkog jezika</h1>
+  <p>Učite uz iskusnog instruktora i podršku AI asistenta – u vašem ritmu, online!</p>
+  <button onclick="startTraining()">Počni obuku</button>
 
-<header>
-  <h1>Uči nemački besplatno – Kurs A1</h1>
-  <p>Za početnike i sve koji žele da savladaju osnove nemačkog jezika</p>
-</header>
+  <div id="chatMessage" class="message">
+    Hallo! Ich bin dein AI-Assistent. Lass uns Deutsch lernen! 🇩🇪
+  </div>
 
-<main>
-  <section class="avatar-placeholder">
-    <p>Ovde dolazi tvoj avatar/video lekcija</p>
-  </section>
-
-  <section>
-    <h2>Lekcija 1: Pozdravi i predstavljanje</h2>
-    <p><strong>Hallo! Wie heißt du?</strong> – Zdravo! Kako se zoveš?<br>
-    <strong>Ich heiße Nusret.</strong> – Zovem se Nusret.<br>
-    <strong>Wie geht's?</strong> – Kako si?<br>
-    <strong>Gut, danke!</strong> – Dobro, hvala!</p>
-  </section>
-
-  <section>
-    <h2>Preuzmi PDF vežbu</h2>
-    <p><a href="#">Klikni ovde za preuzimanje lekcije u PDF formatu</a></p>
-  </section>
-
-  <section>
-    <h2>Prijavi se za sledeće lekcije</h2>
-    <form>
-      <label for="email">Tvoj email:</label><br>
-      <input type="email" id="email" name="email" required><br><br>
-      <input type="submit" value="Prijavi me">
-    </form>
-  </section>
-</main>
-
-<footer>
-  <p>&copy; 2025 Uči Nemački sa Nusretom</p>
-</footer>
-
+  <script>
+    function startTraining() {
+      const message = document.getElementById('chatMessage');
+      setTimeout(() => {
+        message.style.display = 'block';
+      }, 17000); // 17 sekundi
+    }
+  </script>
 </body>
 </html>
