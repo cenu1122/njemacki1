@@ -1,64 +1,44 @@
 ﻿<!DOCTYPE html>
-<html lang="bs">
+<html lang="sr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Online obuka njemačkog jezika</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Moja stranica sa glasovnim izgovorom</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-      text-align: center;
-      padding: 40px;
-    }
-    .avatar {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid #333;
+      padding: 20px;
+      max-width: 600px;
+      margin: auto;
+      background: #f0f0f0;
     }
     h1 {
       color: #333;
     }
-    p {
-      font-size: 18px;
-      color: #555;
-    }
     button {
-      padding: 12px 24px;
-      font-size: 18px;
-      background-color: #0077cc;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: #007bff;
       color: white;
       border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      margin-top: 20px;
+      border-radius: 5px;
     }
-    .message {
-      margin-top: 30px;
-      font-size: 20px;
-      color: green;
-      display: none;
+    button:hover {
+      background-color: #0056b3;
     }
   </style>
 </head>
 <body>
-  <img src="avatar.png" alt="Instruktor" class="avatar">
-  <h1>Dobrodošli na online kurs njemačkog jezika</h1>
-  <p>Učite uz iskusnog instruktora i podršku AI asistenta – u vašem ritmu, online!</p>
-  <button onclick="startTraining()">Počni obuku</button>
+  <h1>Zdravo!</h1>
+  <p>Dobrodošao na moju stranicu. Klikni na dugme ispod da čuješ izgovoreni tekst.</p>
 
-  <div id="chatMessage" class="message">
-    Hallo! Ich bin dein AI-Assistent. Lass uns Deutsch lernen! 🇩🇪
-  </div>
+  <button onclick="govori()">Izgovori tekst</button>
 
   <script>
-    function startTraining() {
-      const message = document.getElementById('chatMessage');
-      setTimeout(() => {
-        message.style.display = 'block';
-      }, 17000); // 17 sekundi
+    function govori() {
+      const govor = new SpeechSynthesisUtterance("Zdravo! Dobrodošao na moju stranicu.");
+      speechSynthesis.speak(govor);
     }
   </script>
 </body>
