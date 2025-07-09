@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Nemački Jezik - Obuka sa Glasom i Avatarom</title>
+  <title>Nemački Jezik - Obuka sa Avatarom i Prevodom</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -17,7 +16,7 @@
       box-sizing: border-box;
     }
     .teacher {
-      flex: 2;
+      flex: 3;
       background: white;
       padding: 20px;
       border-radius: 10px;
@@ -25,13 +24,17 @@
       margin-right: 20px;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      justify-content: flex-start;
     }
     .avatar {
       flex: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
     }
     .avatar img {
       border-radius: 50%;
@@ -50,10 +53,17 @@
       font-size: 18px;
       line-height: 1.6;
       color: #34495e;
-      flex-grow: 1;
+      margin-bottom: 10px;
+    }
+    .translation-text {
+      font-size: 16px;
+      line-height: 1.4;
+      color: #7f8c8d;
+      font-style: italic;
+      margin-bottom: 20px;
     }
     button {
-      margin-top: 20px;
+      margin-top: 10px;
       background-color: #2980b9;
       border: none;
       color: white;
@@ -62,6 +72,7 @@
       border-radius: 6px;
       cursor: pointer;
       transition: background-color 0.3s ease;
+      width: fit-content;
     }
     button:hover {
       background-color: #3498db;
@@ -72,8 +83,11 @@
 
   <div class="teacher">
     <div class="lesson-title">Dobrodošli na čas nemačkog jezika!</div>
-    <div class="lesson-text" id="lesson-content">
-      Hallo! Heute lernen wir einige einfache deutsche Sätze.<br><br>Beispiel: <strong>Guten Morgen!</strong> bedeutet „Dobro jutro!“
+    <div class="lesson-text" id="lesson-german">
+      Hallo! Heute lernen wir einige einfache deutsche Sätze.
+    </div>
+    <div class="translation-text" id="lesson-serbian">
+      Zdravo! Danas učimo neke jednostavne nemačke rečenice.
     </div>
     <button onclick="nextLesson()">Sledeća lekcija</button>
     <button onclick="speakLesson()">Pročitaj lekciju naglas</button>
@@ -86,11 +100,34 @@
 
   <script>
     const lessons = [
-      `Hallo! Heute lernen wir einige einfache deutsche Sätze.<br><br>Beispiel: <strong>Guten Morgen!</strong> bedeutet „Dobro jutro!“`,
-      `Der Satz „Wie geht's?“ bedeutet „Kako si?“ auf Serbisch.<br><br>Antwort: „Mir geht es gut.“ heißt „Dobro sam.“`,
-      `„Danke“ bedeutet „Hvala“.<br><br>Versuche es selbst zu sagen!`,
-      `Sehr gut! Jetzt lernen wir Zahlen:<br>1 - eins<br>2 - zwei<br>3 - drei`,
-      `Prima! Du bist auf dem besten Weg, Deutsch zu lernen!`
+      {
+        german: `Hallo! Heute lernen wir einige einfache deutsche Sätze.`,
+        serbian: `Zdravo! Danas učimo neke jednostavne nemačke rečenice.`
+      },
+      {
+        german: `Beispiel: <strong>Guten Morgen!</strong> bedeutet „Dobro jutro!“`,
+        serbian: `Primer: <strong>Dobar dan!</strong> znači „Dobro jutro!“`
+      },
+      {
+        german: `Der Satz „Wie geht's?“ bedeutet „Kako si?“ auf Serbisch.`,
+        serbian: `Rečenica „Wie geht's?“ znači „Kako si?“ na srpskom.`
+      },
+      {
+        german: `Antwort: „Mir geht es gut.“ heißt „Dobro sam.“`,
+        serbian: `Odgovor: „Mir geht es gut.“ znači „Dobro sam.“`
+      },
+      {
+        german: `„Danke“ bedeutet „Hvala“. Versuche es selbst zu sagen!`,
+        serbian: `„Danke“ znači „Hvala“. Pokušaj da kažeš sam!`
+      },
+      {
+        german: `Sehr gut! Jetzt lernen wir Zahlen: 1 - eins, 2 - zwei, 3 - drei`,
+        serbian: `Veoma dobro! Sada učimo brojeve: 1 - jedan, 2 - dva, 3 - tri`
+      },
+      {
+        german: `Prima! Du bist auf dem besten Weg, Deutsch zu lernen!`,
+        serbian: `Super! Na dobrom si putu da naučiš nemački!`
+      }
     ];
     
     let currentLesson = 0;
@@ -101,11 +138,12 @@
         currentLesson = 0;
         alert("Čestitam! Završio/la si sve lekcije.");
       }
-      document.getElementById("lesson-content").innerHTML = lessons[currentLesson];
+      document.getElementById("lesson-german").innerHTML = lessons[currentLesson].german;
+      document.getElementById("lesson-serbian").innerHTML = lessons[currentLesson].serbian;
     }
 
     function speakLesson() {
-      const text = document.getElementById("lesson-content").innerText;
+      const text = document.getElementById("lesson-german").innerText;
       const utterance = new SpeechSynthesisUtterance(text);
       utterance.lang = 'de-DE'; // nemački jezik
       speechSynthesis.speak(utterance);
