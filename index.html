@@ -1,158 +1,92 @@
-
-  
 <!DOCTYPE html>
-<html lang="de">
+<html lang="hr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Nemački Jezik - Obuka sa Avatarom i Prevodom</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stolarska Radnja</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      display: flex;
-      flex-direction: row;
       margin: 0;
-      padding: 20px;
-      background: #f0f4f8;
-      height: 100vh;
-      box-sizing: border-box;
+      padding: 0;
+      background-color: #f5f5f5;
     }
-    .teacher {
-      flex: 3;
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
-      margin-right: 20px;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-    }
-    .avatar {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
-    }
-    .avatar img {
-      border-radius: 50%;
-      width: 180px;
-      height: 180px;
-      object-fit: cover;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
-      margin-bottom: 15px;
-    }
-    .lesson-title {
-      font-size: 24px;
-      margin-bottom: 15px;
-      color: #2c3e50;
-    }
-    .lesson-text {
-      font-size: 18px;
-      line-height: 1.6;
-      color: #34495e;
-      margin-bottom: 10px;
-    }
-    .translation-text {
-      font-size: 16px;
-      line-height: 1.4;
-      color: #7f8c8d;
-      font-style: italic;
-      margin-bottom: 20px;
-    }
-    button {
-      margin-top: 10px;
-      background-color: #2980b9;
-      border: none;
+    header {
+      background-color: #333;
       color: white;
-      padding: 12px 20px;
-      font-size: 16px;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      width: fit-content;
+      padding: 20px;
+      text-align: center;
     }
-    button:hover {
-      background-color: #3498db;
+    nav {
+      background-color: #444;
+      padding: 10px;
+      text-align: center;
+    }
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    section {
+      padding: 40px;
+      background-color: white;
+      margin: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #333;
+    }
+    .popup {
+      background-color: #ffd700;
+      color: #000;
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      animation: popupAnim 1.5s ease-in-out infinite alternate;
+    }
+    @keyframes popupAnim {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-5px); }
     }
   </style>
 </head>
 <body>
+  <header>
+    <h1>Stolarska Radnja - Pametni Namještaj</h1>
+    <p>Specijalizirani za male prostore – funkcionalnost i stil</p>
+  </header>
 
-  <div class="teacher">
-    <div class="lesson-title">Dobrodošli na čas nemačkog jezika!</div>
-    <div class="lesson-text" id="lesson-german">
-      Hallo! Heute lernen wir einige einfache deutsche Sätze.
-    </div>
-    <div class="translation-text" id="lesson-serbian">
-      Zdravo! Danas učimo neke jednostavne nemačke rečenice.
-    </div>
-    <button onclick="nextLesson()">Sledeća lekcija</button>
-    <button onclick="speakLesson()">Pročitaj lekciju naglas</button>
-  </div>
+  <nav>
+    <a href="#stolovi">Stolovi</a>
+    <a href="#kuhinje">Kuhinje</a>
+    <a href="#vrata">Vrata</a>
+    <a href="#kreveti">Kreveti</a>
+  </nav>
 
-  <div class="avatar">
-    <!-- Avatar sa sigurne i vidljive adrese -->
-    <img src="https://cdn-icons-png.flaticon.com/512/4712/4712011.png" alt="Avatar ChatGPT" />
-    <div>Vaš učitelj (ChatGPT)</div>
-  </div>
+  <section id="stolovi">
+    <div class="popup">Novo! Stolovi na razvlačenje s tajnim pregradama</div>
+    <h2>Stolovi na razvlačenje</h2>
+    <p>Praktični, čvrsti i elegantni stolovi koji se prilagođavaju vašim potrebama. Idealno za manje stanove i višenamjenske prostore.</p>
+  </section>
 
-  <script>
-    const lessons = [
-      {
-        german: `Hallo! Heute lernen wir einige einfache deutsche Sätze.`,
-        serbian: `Zdravo! Danas učimo neke jednostavne nemačke rečenice.`
-      },
-      {
-        german: `Beispiel: <strong>Guten Morgen!</strong> bedeutet „Dobro jutro!“`,
-        serbian: `Primer: <strong>Dobar dan!</strong> znači „Dobro jutro!“`
-      },
-      {
-        german: `Der Satz „Wie geht's?“ bedeutet „Kako si?“ auf Serbisch.`,
-        serbian: `Rečenica „Wie geht's?“ znači „Kako si?“ na srpskom.`
-      },
-      {
-        german: `Antwort: „Mir geht es gut.“ heißt „Dobro sam.“`,
-        serbian: `Odgovor: „Mir geht es gut.“ znači „Dobro sam.“`
-      },
-      {
-        german: `„Danke“ bedeutet „Hvala“. Versuche es selbst zu sagen!`,
-        serbian: `„Danke“ znači „Hvala“. Pokušaj da kažeš sam!`
-      },
-      {
-        german: `Sehr gut! Jetzt lernen wir Zahlen: 1 - eins, 2 - zwei, 3 - drei`,
-        serbian: `Veoma dobro! Sada učimo brojeve: 1 - jedan, 2 - dva, 3 - tri`
-      },
-      {
-        german: `Prima! Du bist auf dem besten Weg, Deutsch zu lernen!`,
-        serbian: `Super! Na dobrom si putu da naučiš nemački!`
-      }
-    ];
-    
-    let currentLesson = 0;
+  <section id="kuhinje">
+    <div class="popup">Akcija: 10% popusta na sve kuhinjske elemente!</div>
+    <h2>Kuhinje po mjeri</h2>
+    <p>Izrađujemo moderne kuhinje po mjeri, sa pametnim rješenjima za uštedu prostora, maksimalnu funkcionalnost i stil.</p>
+  </section>
 
-    function nextLesson() {
-      currentLesson++;
-      if (currentLesson >= lessons.length) {
-        currentLesson = 0;
-        alert("Čestitam! Završio/la si sve lekcije.");
-      }
-      document.getElementById("lesson-german").innerHTML = lessons[currentLesson].german;
-      document.getElementById("lesson-serbian").innerHTML = lessons[currentLesson].serbian;
-    }
+  <section id="vrata">
+    <div class="popup">Besplatna montaža unutarnjih vrata do kraja mjeseca</div>
+    <h2>Unutarnja vrata</h2>
+    <p>Unikatna vrata izrađena po vašoj želji. Klizna, harmonika ili klasična – birate vi!</p>
+  </section>
 
-    function speakLesson() {
-      const text = document.getElementById("lesson-german").innerText;
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = 'de-DE'; // nemački jezik
-      utterance.rate = 0.6;      // sporiji izgovor
-      speechSynthesis.speak(utterance);
-    }
-  </script>
-
+  <section id="kreveti">
+    <div class="popup">Pametni kreveti koji se podižu na zid – idealno za garsonjere</div>
+    <h2>Kreveti za male prostore</h2>
+    <p>Kreveti koji se podižu na zid, kreveti u ormaru, višenamjenski komadi koji štede prostor i pretvaraju dnevni boravak u spavaću sobu.</p>
+  </section>
 </body>
 </html>
