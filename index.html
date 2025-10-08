@@ -88,7 +88,42 @@
 
   <div class="input-container">
     <input type="text" id="userInput" placeholder="Upiši svoj odgovor ovdje">
-    <button>Pošalji</button>
+    <button onclick="checkAnswer()">Pošalji</button>
   </div>
+
+  <script>
+    const lessonBox = document.getElementById('lesson');
+    
+    // Lekcije: pitanje i točan odgovor
+    const lessons = [
+      { question: "Kako se kaže 'Hello' na njemačkom?", answer: "Hallo" },
+      { question: "Kako se kaže 'Thank you' na njemačkom?", answer: "Danke" },
+      { question: "Kako se kaže 'Goodbye' na njemačkom?", answer: "Tschüss" }
+    ];
+
+    let currentLesson = 0;
+
+    // Funkcija koja provjerava odgovor
+    function checkAnswer() {
+      const userInput = document.getElementById('userInput').value.trim();
+      if(userInput.toLowerCase() === lessons[currentLesson].answer.toLowerCase()) {
+        lessonBox.innerHTML = `<p>Točno! 😊</p>`;
+        currentLesson++;
+        setTimeout(() => {
+          if(currentLesson < lessons.length) {
+            lessonBox.innerHTML = `<p>${lessons[currentLesson].question}</p>`;
+          } else {
+            lessonBox.innerHTML = `<p>Čestitamo! Završili ste lekciju. 🎉</p>`;
+          }
+        }, 1000);
+      } else {
+        lessonBox.innerHTML = `<p>Nije točno, pokušaj ponovno! ❌</p>`;
+      }
+      document.getElementById('userInput').value = '';
+    }
+
+    // Prikaz prve lekcije
+    lessonBox.innerHTML = `<p>${lessons[currentLesson].question}</p>`;
+  </script>
 </body>
 </html>
