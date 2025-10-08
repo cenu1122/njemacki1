@@ -1,56 +1,25 @@
 <!DOCTYPE html>
 <html lang="hr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Obuka: Njemački jezik</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f8ff;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        #container {
-            text-align: center;
-            background: white;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            max-width: 600px;
-        }
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-            margin-top: 20px;
-            cursor: pointer;
-            border: none;
-            border-radius: 6px;
-            background-color: #007acc;
-            color: white;
-        }
-        button:hover {
-            background-color: #005f99;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Njemački s tvojim avatarom</title>
 </head>
 <body>
-    <div id="container">
-        <h1>Dobrodošli na obuku njemačkog jezika!</h1>
-        <p>Ova obuka će vas voditi korak po korak kroz osnove njemačkog jezika.</p>
-        <button id="startBtn">Započni obuku</button>
-    </div>
+  <h1>Dobrodošli na obuku njemačkog jezika!</h1>
 
-    <script>
-        const startBtn = document.getElementById('startBtn');
-        startBtn.addEventListener('click', () => {
-            alert("Prvi korak obuke: Upoznajmo se sa osnovnim pozdravima na njemačkom.");
-            // Sledeći korak ćemo dodati kada mi kažeš da nastavimo
-        });
-    </script>
+  <div class="avatar-container">
+    <img src="avatar.png" alt="Tvoj Avatar">
+    <p>Ja sam tvoj avatar i vodim te kroz lekcije!</p>
+  </div>
+
+  <div class="lesson-box" id="lesson">
+    <p>Ovdje će se prikazivati lekcije.</p>
+  </div>
+
+  <div class="input-container">
+    <input type="text" id="userInput" placeholder="Upiši svoj odgovor ovdje">
+    <button>Pošalji</button>
+  </div>
 </body>
 </html>
