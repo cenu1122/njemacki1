@@ -1,50 +1,164 @@
-<script>
-  const lessonBox = document.getElementById('lesson');
-  const userInput = document.getElementById('userInput');
-
-  const lessons = [
-    { question: "Kako se kaže 'Hello' na njemačkom?", answer: "Hallo" },
-    { question: "Kako se kaže 'Thank you' na njemačkom?", answer: "Danke" },
-    { question: "Kako se kaže 'Goodbye' na njemačkom?", answer: "Tschüss" }
-  ];
-
-  let currentLesson = 0;
-
-  // Funkcija za "izgovor" teksta avatarom
-  function speak(text) {
-    if ('speechSynthesis' in window) {
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = 'de-DE'; // njemački jezik
-      speechSynthesis.speak(utterance);
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Njemački s tvojim avatarom</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f4f8;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
     }
-  }
 
-  function showLesson() {
-    lessonBox.innerHTML = `<p>${lessons[currentLesson].question}</p>`;
-    speak(lessons[currentLesson].question);
-  }
-
-  function checkAnswer() {
-    const answer = userInput.value.trim();
-    if(answer.toLowerCase() === lessons[currentLesson].answer.toLowerCase()) {
-      lessonBox.innerHTML = `<p>Točno! 😊</p>`;
-      speak("Richtig!"); // avatar izgovara "Točno"
-      currentLesson++;
-      setTimeout(() => {
-        if(currentLesson < lessons.length) {
-          showLesson();
-        } else {
-          lessonBox.innerHTML = `<p>Čestitamo! Završili ste lekciju. 🎉</p>`;
-          speak("Herzlichen Glückwunsch!"); // avatar čestita
-        }
-      }, 1000);
-    } else {
-      lessonBox.innerHTML = `<p>Nije točno, pokušaj ponovno! ❌</p>`;
-      speak("Falsch, versuche es noch einmal"); // avatar upozorava
+    h1 {
+      color: #333;
     }
-    userInput.value = '';
-  }
 
-  // Prikaz prve lekcije
-  showLesson();
-</script>
+    .avatar-container {
+      margin: 20px 0;
+      text-align: center;
+    }
+
+    .avatar-container img {
+      width: 150px;
+      border-radius: 50%;
+      border: 2px solid #333;
+      transition: transform 0.2s;
+    }
+
+    .lesson-box {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 600px;
+      margin-bottom: 20px;
+    }
+
+    .lesson-box p {
+      font-size: 18px;
+      line-height: 1.5;
+    }
+
+    .input-container {
+      display: flex;
+      gap: 10px;
+      max-width: 600px;
+      width: 100%;
+    }
+
+    input[type="text"] {
+      flex: 1;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 10px 20px;
+      border-radius: 6px;
+      border: none;
+      background-color: #007BFF;
+      color: white;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    /* Animacija za avatar dok govori */
+    @keyframes talking {
+      0% { transform: translateY(0); }
+      25% { transform: translateY(-5px); }
+      50% { transform: translateY(0); }
+      75% { transform: translateY(5px); }
+      100% { transform: translateY(0); }
+    }
+
+    .talking {
+      animation: talking 0.5s infinite;
+    }
+  </style>
+</head>
+<body>
+  <h1>Dobrodošli na obuku njemačkog jezika!</h1>
+
+  <div class="avatar-container">
+    <img src="avatar.png" alt="Tvoj Avatar">
+    <p>Ja sam tvoj avatar i vodim te kroz lekcije!</p>
+  </div>
+
+  <div class="lesson-box" id="lesson">
+    <p>Ovdje će se prikazivati lekcije.</p>
+  </div>
+
+  <div class="input-container">
+    <input type="text" id="userInput" placeholder="Upiši svoj odgovor ovdje">
+    <button onclick="checkAnswer()">Pošalji</button>
+  </div>
+
+  <script>
+    const lessonBox = document.getElementById('lesson');
+    const userInput = document.getElementById('userInput');
+
+    const lessons = [
+      { question: "Kako se kaže 'Hello' na njemačkom?", answer: "Hallo" },
+      { question: "Kako se kaže 'Thank you' na njemačkom?", answer: "Danke" },
+      { question: "Kako se kaže 'Goodbye' na njemačkom?", answer: "Tschüss" }
+    ];
+
+    let currentLesson = 0;
+
+    // Funkcija za "izgovor" teksta avatarom + animacija
+    function speak(text) {
+      if ('speechSynthesis' in window) {
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'de-DE'; // njemački jezik
+        const avatarImg = document.querySelector('.avatar-container img');
+        avatarImg.classList.add('talking');
+        utterance.onend = () => {
+          avatarImg.classList.remove('talking');
+        };
+        speechSynthesis.speak(utterance);
+      }
+    }
+
+    function showLesson() {
+      lessonBox.innerHTML = `<p>${lessons[currentLesson].question}</p>`;
+      speak(lessons[currentLesson].question);
+    }
+
+    function checkAnswer() {
+      const answer = userInput.value.trim();
+      if(answer.toLowerCase() === lessons[currentLesson].answer.toLowerCase()) {
+        lessonBox.innerHTML = `<p>Točno! 😊</p>`;
+        speak("Richtig!");
+        currentLesson++;
+        setTimeout(() => {
+          if(currentLesson < lessons.length) {
+            showLesson();
+          } else {
+            lessonBox.innerHTML = `<p>Čestitamo! Završili ste lekciju. 🎉</p>`;
+            speak("Herzlichen Glückwunsch!");
+          }
+        }, 1000);
+      } else {
+        lessonBox.innerHTML = `<p>Nije točno, pokušaj ponovno! ❌</p>`;
+        speak("Falsch, versuche es noch einmal");
+      }
+      userInput.value = '';
+    }
+
+    // Pokreni prvu lekciju
+    showLesson();
+  </script>
+</body>
+</html>
