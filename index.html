@@ -108,10 +108,11 @@
     let currentLesson = 0;
     let waitingForAnswer = false;
 
-    function speak(text) {
+    // Funkcija za govor i animaciju avatara
+    function speak(text, lang='hr-HR') {
       if ('speechSynthesis' in window) {
         const utterance = new SpeechSynthesisUtterance(text);
-        utterance.lang = 'de-DE';
+        utterance.lang = lang;
         avatarImg.classList.add('talking');
         utterance.onend = () => avatarImg.classList.remove('talking');
         speechSynthesis.speak(utterance);
@@ -120,14 +121,14 @@
 
     function showLesson() {
       waitingForAnswer = false;
-      // prvo objašnjenje
+      // prvo objašnjenje na hrvatskom
       lessonBox.innerHTML = `<p>${lessons[currentLesson].explanation}</p>`;
-      speak(lessons[currentLesson].explanation);
+      speak(lessons[currentLesson].explanation, 'hr-HR');
 
-      // nakon 3 sekunde, postavi pitanje
+      // nakon 3 sekunde, postavi pitanje na njemačkom
       setTimeout(() => {
         lessonBox.innerHTML = `<p>${lessons[currentLesson].question}</p>`;
-        speak(lessons[currentLesson].question);
+        speak(lessons[currentLesson].question, 'de-DE');
         waitingForAnswer = true;
         userInput.focus();
       }, 3000);
@@ -136,22 +137,22 @@
     function checkAnswer(answer) {
       if(answer.toLowerCase() === lessons[currentLesson].answer.toLowerCase()) {
         lessonBox.innerHTML = `<p>Točno! 😊</p>`;
-        speak("Richtig!");
+        speak("Richtig!", 'de-DE');
         currentLesson++;
         setTimeout(() => {
           if(currentLesson < lessons.length) showLesson();
           else {
             lessonBox.innerHTML = `<p>Čestitamo! Završili ste lekciju. 🎉</p>`;
-            speak("Herzlichen Glückwunsch!");
+            speak("Herzlichen Glückwunsch!", 'de-DE');
           }
         }, 1000);
       } else {
         lessonBox.innerHTML = `<p>Nije točno, pokušaj ponovno! ❌</p>`;
-        speak("Falsch, versuche es noch einmal");
+        speak("Falsch, versuche es noch einmal", 'de-DE');
       }
     }
 
-    // Enter key listener
+    // Enter key listener za slanje odgovora
     userInput.addEventListener('keypress', function(e){
       if(e.key === 'Enter' && waitingForAnswer) {
         checkAnswer(userInput.value.trim());
@@ -159,7 +160,7 @@
       }
     });
 
-    // pokreni prvu lekciju
+    // Pokreni prvu lekciju
     showLesson();
   </script>
 </body>
