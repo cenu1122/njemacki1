@@ -1,106 +1,56 @@
 <!DOCTYPE html>
 <html lang="hr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Stolarska Radnja</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f5f5f5;
-    }
-    header {
-      background-color: #333;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
-    nav {
-      background-color: #444;
-      padding: 10px;
-      text-align: center;
-    }
-    nav a {
-      color: white;
-      margin: 0 15px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    section {
-      padding: 40px;
-      background-color: white;
-      margin: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    h2 {
-      color: #333;
-    }
-    .popup-text {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #ffd700;
-      color: black;
-      padding: 15px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
-      animation: fadeInOut 6s ease-in-out infinite;
-      z-index: 1000;
-    }
-    @keyframes fadeInOut {
-      0%, 100% { opacity: 0; transform: translateY(20px); }
-      10%, 90% { opacity: 1; transform: translateY(0); }
-    }
-    img {
-      width: 100%;
-      max-width: 600px;
-      height: auto;
-      margin-top: 20px;
-      border-radius: 10px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obuka: Njemački jezik</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        #container {
+            text-align: center;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            max-width: 600px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-top: 20px;
+            cursor: pointer;
+            border: none;
+            border-radius: 6px;
+            background-color: #007acc;
+            color: white;
+        }
+        button:hover {
+            background-color: #005f99;
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>Stolarska Radnja - Pametni Namještaj</h1>
-    <p>Specijalizirani za male prostore – funkcionalnost i stil</p>
-  </header>
+    <div id="container">
+        <h1>Dobrodošli na obuku njemačkog jezika!</h1>
+        <p>Ova obuka će vas voditi korak po korak kroz osnove njemačkog jezika.</p>
+        <button id="startBtn">Započni obuku</button>
+    </div>
 
-  <nav>
-    <a href="#stolovi">Stolovi</a>
-    <a href="#kuhinje">Kuhinje</a>
-    <a href="#vrata">Vrata</a>
-    <a href="#kreveti">Kreveti</a>
-  </nav>
-
-  <section id="stolovi">
-    <h2>Stolovi na razvlačenje</h2>
-    <p>Praktični, čvrsti i elegantni stolovi koji se prilagođavaju vašim potrebama. Idealno za manje stanove i višenamjenske prostore.</p>
-    <img src="https://via.placeholder.com/600x400?text=Stol+na+razvla%C4%8Denje" alt="Stol na razvlačenje">
-  </section>
-
-  <section id="kuhinje">
-    <h2>Kuhinje po mjeri</h2>
-    <p>Izrađujemo moderne kuhinje po mjeri, sa pametnim rješenjima za uštedu prostora, maksimalnu funkcionalnost i stil.</p>
-    <img src="https://via.placeholder.com/600x400?text=Moderna+kuhinja+po+mjeri" alt="Kuhinja po mjeri">
-  </section>
-
-  <section id="vrata">
-    <h2>Unutarnja vrata</h2>
-    <p>Unikatna vrata izrađena po vašoj želji. Klizna, harmonika ili klasična – birate vi!</p>
-    <img src="https://via.placeholder.com/600x400?text=Unutarnja+vrata" alt="Unutarnja vrata">
-  </section>
-
-  <section id="kreveti">
-    <h2>Kreveti za male prostore</h2>
-    <p>Kreveti koji se podižu na zid, kreveti u ormaru, višenamjenski komadi koji štede prostor i pretvaraju dnevni boravak u spavaću sobu.</p>
-    <img src="https://via.placeholder.com/600x400?text=Pametni+krevet+na+zid" alt="Krevet na zid">
-  </section>
-
-  <div class="popup-text">Novo! Kreveti koji se podižu na zid – idealni za garsonjere.</div>
+    <script>
+        const startBtn = document.getElementById('startBtn');
+        startBtn.addEventListener('click', () => {
+            alert("Prvi korak obuke: Upoznajmo se sa osnovnim pozdravima na njemačkom.");
+            // Sledeći korak ćemo dodati kada mi kažeš da nastavimo
+        });
+    </script>
 </body>
 </html>
-
