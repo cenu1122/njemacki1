@@ -14,9 +14,7 @@
       padding: 20px;
     }
 
-    h1 {
-      color: #333;
-    }
+    h1 { color: #333; }
 
     .avatar-container {
       margin: 20px 0;
@@ -40,10 +38,7 @@
       margin-bottom: 20px;
     }
 
-    .lesson-box p {
-      font-size: 18px;
-      line-height: 1.5;
-    }
+    .lesson-box p { font-size: 18px; line-height: 1.5; }
 
     .input-container {
       display: flex;
@@ -60,21 +55,6 @@
       font-size: 16px;
     }
 
-    button {
-      padding: 10px 20px;
-      border-radius: 6px;
-      border: none;
-      background-color: #007BFF;
-      color: white;
-      cursor: pointer;
-      font-size: 16px;
-    }
-
-    button:hover {
-      background-color: #0056b3;
-    }
-
-    /* Animacija za avatar dok govori */
     @keyframes talking {
       0% { transform: translateY(0); }
       25% { transform: translateY(-5px); }
@@ -83,9 +63,7 @@
       100% { transform: translateY(0); }
     }
 
-    .talking {
-      animation: talking 0.5s infinite;
-    }
+    .talking { animation: talking 0.5s infinite; }
   </style>
 </head>
 <body>
@@ -102,50 +80,67 @@
 
   <div class="input-container">
     <input type="text" id="userInput" placeholder="Upiši svoj odgovor ovdje">
-    <button onclick="checkAnswer()">Pošalji</button>
   </div>
 
   <script>
     const lessonBox = document.getElementById('lesson');
     const userInput = document.getElementById('userInput');
+    const avatarImg = document.querySelector('.avatar-container img');
 
     const lessons = [
-      { question: "Kako se kaže 'Hello' na njemačkom?", answer: "Hallo" },
-      { question: "Kako se kaže 'Thank you' na njemačkom?", answer: "Danke" },
-      { question: "Kako se kaže 'Goodbye' na njemačkom?", answer: "Tschüss" }
+      { 
+        question: "Kako se kaže 'Hello' na njemačkom?", 
+        answer: "Hallo",
+        explanation: "Riječ 'Hallo' znači 'Zdravo'. Može se koristiti u svakodnevnom pozdravu." 
+      },
+      { 
+        question: "Kako se kaže 'Thank you' na njemačkom?", 
+        answer: "Danke",
+        explanation: "'Danke' znači 'Hvala'. Možeš reći 'Danke' kad ti netko pomogne." 
+      },
+      { 
+        question: "Kako se kaže 'Goodbye' na njemačkom?", 
+        answer: "Tschüss",
+        explanation: "'Tschüss' znači 'Doviđenja'. Koristi se neformalno pri rastanku." 
+      }
     ];
 
     let currentLesson = 0;
+    let waitingForAnswer = false;
 
-    // Funkcija za "izgovor" teksta avatarom + animacija
     function speak(text) {
       if ('speechSynthesis' in window) {
         const utterance = new SpeechSynthesisUtterance(text);
-        utterance.lang = 'de-DE'; // njemački jezik
-        const avatarImg = document.querySelector('.avatar-container img');
+        utterance.lang = 'de-DE';
         avatarImg.classList.add('talking');
-        utterance.onend = () => {
-          avatarImg.classList.remove('talking');
-        };
+        utterance.onend = () => avatarImg.classList.remove('talking');
         speechSynthesis.speak(utterance);
       }
     }
 
     function showLesson() {
-      lessonBox.innerHTML = `<p>${lessons[currentLesson].question}</p>`;
-      speak(lessons[currentLesson].question);
+      waitingForAnswer = false;
+      // prvo objašnjenje
+      lessonBox.innerHTML = `<p>${lessons[currentLesson].explanation}</p>`;
+      speak(lessons[currentLesson].explanation);
+
+      // nakon 3 sekunde, postavi pitanje
+      setTimeout(() => {
+        lessonBox.innerHTML = `<p>${lessons[currentLesson].question}</p>`;
+        speak(lessons[currentLesson].question);
+        waitingForAnswer = true;
+        userInput.focus();
+      }, 3000);
     }
 
-    function checkAnswer() {
-      const answer = userInput.value.trim();
+    function checkAnswer(answer) {
       if(answer.toLowerCase() === lessons[currentLesson].answer.toLowerCase()) {
         lessonBox.innerHTML = `<p>Točno! 😊</p>`;
         speak("Richtig!");
         currentLesson++;
         setTimeout(() => {
-          if(currentLesson < lessons.length) {
-            showLesson();
-          } else {
+          if(currentLesson < lessons.length) showLesson();
+          else {
             lessonBox.innerHTML = `<p>Čestitamo! Završili ste lekciju. 🎉</p>`;
             speak("Herzlichen Glückwunsch!");
           }
@@ -154,10 +149,17 @@
         lessonBox.innerHTML = `<p>Nije točno, pokušaj ponovno! ❌</p>`;
         speak("Falsch, versuche es noch einmal");
       }
-      userInput.value = '';
     }
 
-    // Pokreni prvu lekciju
+    // Enter key listener
+    userInput.addEventListener('keypress', function(e){
+      if(e.key === 'Enter' && waitingForAnswer) {
+        checkAnswer(userInput.value.trim());
+        userInput.value = '';
+      }
+    });
+
+    // pokreni prvu lekciju
     showLesson();
   </script>
 </body>
