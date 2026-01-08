@@ -1,167 +1,85 @@
 <!DOCTYPE html>
-<html lang="hr">
+<html lang="bs">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Njemački s tvojim avatarom</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f0f4f8;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 20px;
-    }
-
-    h1 { color: #333; }
-
-    .avatar-container {
-      margin: 20px 0;
-      text-align: center;
-    }
-
-    .avatar-container img {
-      width: 150px;
-      border-radius: 50%;
-      border: 2px solid #333;
-      transition: transform 0.2s;
-    }
-
-    .lesson-box {
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      width: 100%;
-      max-width: 600px;
-      margin-bottom: 20px;
-    }
-
-    .lesson-box p { font-size: 18px; line-height: 1.5; }
-
-    .input-container {
-      display: flex;
-      gap: 10px;
-      max-width: 600px;
-      width: 100%;
-    }
-
-    input[type="text"] {
-      flex: 1;
-      padding: 10px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      font-size: 16px;
-    }
-
-    @keyframes talking {
-      0% { transform: translateY(0); }
-      25% { transform: translateY(-5px); }
-      50% { transform: translateY(0); }
-      75% { transform: translateY(5px); }
-      100% { transform: translateY(0); }
-    }
-
-    .talking { animation: talking 0.5s infinite; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MA-BH Namještaj po mjeri</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <h1>Dobrodošli na obuku njemačkog jezika!</h1>
 
-  <div class="avatar-container">
-    <img src="avatar.png" alt="Tvoj Avatar">
-    <p>Ja sam tvoj avatar i vodim te kroz lekcije!</p>
-  </div>
+<header>
+    <div class="container nav">
+        <h1>MA-BH Namještaj</h1>
+        <ul>
+            <li><a href="#home">Početna</a></li>
+            <li><a href="#about">O nama</a></li>
+            <li><a href="#services">Usluge</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#contact">Kontakt</a></li>
+            <li class="lang">
+                <a href="index.html">BS</a> |
+                <a href="de.html">DE</a> |
+                <a href="en.html">EN</a>
+            </li>
+        </ul>
+    </div>
+</header>
 
-  <div class="lesson-box" id="lesson">
-    <p>Ovdje će se prikazivati lekcije.</p>
-  </div>
+<section id="home" class="hero">
+    <div class="overlay">
+        <h2>Namještaj po mjeri za svaki prostor</h2>
+        <p>Kvalitet • Preciznost • Moderan dizajn</p>
+        <a href="#contact" class="btn">Zatraži ponudu</a>
+    </div>
+</section>
 
-  <div class="input-container">
-    <input type="text" id="userInput" placeholder="Upiši svoj odgovor ovdje">
-  </div>
+<section id="about" class="light">
+    <div class="container">
+        <h2>O nama</h2>
+        <p>
+            MA-BH Namještaj po mjeri bavi se izradom kuhinja, ormara, garderobera
+            i kompletnog namještaja po mjeri. Radimo precizno, kvalitetno i po dogovoru.
+        </p>
+    </div>
+</section>
 
-  <script>
-    const lessonBox = document.getElementById('lesson');
-    const userInput = document.getElementById('userInput');
-    const avatarImg = document.querySelector('.avatar-container img');
+<section id="services">
+    <div class="container grid">
+        <div class="box">Kuhinje po mjeri</div>
+        <div class="box">Ormari i garderoberi</div>
+        <div class="box">Dnevne i spavaće sobe</div>
+        <div class="box">Uredski namještaj</div>
+    </div>
+</section>
 
-    const lessons = [
-      { 
-        question: "Kako se kaže 'Hello' na njemačkom?", 
-        answer: "Hallo",
-        explanation: "Riječ 'Hallo' znači 'Zdravo'. Može se koristiti u svakodnevnom pozdravu." 
-      },
-      { 
-        question: "Kako se kaže 'Thank you' na njemačkom?", 
-        answer: "Danke",
-        explanation: "'Danke' znači 'Hvala'. Možeš reći 'Danke' kad ti netko pomogne." 
-      },
-      { 
-        question: "Kako se kaže 'Goodbye' na njemačkom?", 
-        answer: "Tschüss",
-        explanation: "'Tschüss' znači 'Doviđenja'. Koristi se neformalno pri rastanku." 
-      }
-    ];
+<section id="portfolio" class="light">
+    <div class="container gallery">
+        <img src="images/kitchen-01.jpg">
+        <img src="images/wardrobe-01.jpg">
+        <img src="images/livingroom-01.jpg">
+        <img src="images/bedroom-01.jpg">
+    </div>
+</section>
 
-    let currentLesson = 0;
-    let waitingForAnswer = false;
+<section id="contact">
+    <div class="container">
+        <h2>Kontakt</h2>
+        <p>📞 +387 XX XXX XXX | ✉️ info@ma-bh.ba</p>
 
-    // Funkcija za govor i animaciju avatara
-    function speak(text, lang='hr-HR') {
-      if ('speechSynthesis' in window) {
-        const utterance = new SpeechSynthesisUtterance(text);
-        utterance.lang = lang;
-        avatarImg.classList.add('talking');
-        utterance.onend = () => avatarImg.classList.remove('talking');
-        speechSynthesis.speak(utterance);
-      }
-    }
+        <form>
+            <input type="text" placeholder="Ime">
+            <input type="email" placeholder="Email">
+            <textarea placeholder="Poruka"></textarea>
+            <button class="btn">Pošalji</button>
+        </form>
+    </div>
+</section>
 
-    function showLesson() {
-      waitingForAnswer = false;
-      // prvo objašnjenje na hrvatskom
-      lessonBox.innerHTML = `<p>${lessons[currentLesson].explanation}</p>`;
-      speak(lessons[currentLesson].explanation, 'hr-HR');
+<footer>
+    © 2026 MA-BH Namještaj po mjeri
+</footer>
 
-      // nakon 3 sekunde, postavi pitanje na njemačkom
-      setTimeout(() => {
-        lessonBox.innerHTML = `<p>${lessons[currentLesson].question}</p>`;
-        speak(lessons[currentLesson].question, 'de-DE');
-        waitingForAnswer = true;
-        userInput.focus();
-      }, 3000);
-    }
-
-    function checkAnswer(answer) {
-      if(answer.toLowerCase() === lessons[currentLesson].answer.toLowerCase()) {
-        lessonBox.innerHTML = `<p>Točno! 😊</p>`;
-        speak("Richtig!", 'de-DE');
-        currentLesson++;
-        setTimeout(() => {
-          if(currentLesson < lessons.length) showLesson();
-          else {
-            lessonBox.innerHTML = `<p>Čestitamo! Završili ste lekciju. 🎉</p>`;
-            speak("Herzlichen Glückwunsch!", 'de-DE');
-          }
-        }, 1000);
-      } else {
-        lessonBox.innerHTML = `<p>Nije točno, pokušaj ponovno! ❌</p>`;
-        speak("Falsch, versuche es noch einmal", 'de-DE');
-      }
-    }
-
-    // Enter key listener za slanje odgovora
-    userInput.addEventListener('keypress', function(e){
-      if(e.key === 'Enter' && waitingForAnswer) {
-        checkAnswer(userInput.value.trim());
-        userInput.value = '';
-      }
-    });
-
-    // Pokreni prvu lekciju
-    showLesson();
-  </script>
+<script src="js/script.js"></script>
 </body>
 </html>
