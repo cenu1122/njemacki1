@@ -6,13 +6,11 @@
   <title>MA-BH Namještaj po Mjeri</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    /* Global */
     * { box-sizing: border-box; margin:0; padding:0; }
     body { font-family: 'Roboto', sans-serif; line-height:1.6; color:#333; }
     a { text-decoration:none; color:inherit; }
     img { max-width:100%; border-radius:8px; }
 
-    /* Header */
     header { background:#222; color:white; padding:20px 0; position:sticky; top:0; z-index:100; }
     header h1 { text-align:center; margin-bottom:10px; font-size:2rem; }
     nav { text-align:center; margin-bottom:10px; }
@@ -23,28 +21,21 @@
     .lang-switch button { margin:0 5px; padding:5px 12px; background:#f0a500; border:none; border-radius:5px; cursor:pointer; color:white; font-weight:bold; }
     .lang-switch button:hover { background:#ffbf00; }
 
-    /* Sections */
     section { padding:80px 20px; }
     .container { max-width:1200px; margin:auto; }
     h2 { font-size:2rem; margin-bottom:20px; text-align:center; }
-    p { text-align:center; margin-bottom:15px; }
+    p { margin-bottom:20px; }
     ul { list-style:none; text-align:center; padding:0; }
     li { margin-bottom:10px; font-weight:bold; }
 
-    /* Gallery */
     .gallery { display:grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap:15px; }
-
-    /* Reviews */
     .reviews { background:#f4f4f4; padding:20px; border-radius:8px; margin:15px auto; max-width:600px; box-shadow:0 2px 5px rgba(0,0,0,0.1); }
 
-    /* Footer */
     footer { background:#222; color:white; text-align:center; padding:20px; }
 
-    /* Button animations */
     .fade-in { opacity:0; transform:translateY(20px); animation:fadeUp 1s forwards; }
     @keyframes fadeUp { to { opacity:1; transform:translateY(0); } }
 
-    /* Responsive */
     @media(max-width:768px) {
       nav a { display:block; margin:10px 0; }
     }
@@ -55,119 +46,7 @@
 <header>
   <h1>MA-BH Namještaj po Mjeri</h1>
   <nav>
-    <a href="#home">Početna / Home / Startseite</a>
-    <a href="#about">O Nama / About Us / Über Uns</a>
-    <a href="#services">Usluge / Services / Dienstleistungen</a>
-    <a href="#gallery">Galerija / Gallery / Galerie</a>
-    <a href="#reviews">Recenzije / Reviews / Bewertungen</a>
-    <a href="#contact">Kontakt / Contact / Kontakt</a>
-  </nav>
-  <div class="lang-switch">
-    <button onclick="changeLang('bs')">BS</button>
-    <button onclick="changeLang('en')">EN</button>
-    <button onclick="changeLang('de')">DE</button>
-  </div>
-</header>
-
-<section id="home">
-  <div class="container fade-in">
-    <h2 data-bs="Dobrodošli u MA-BH Namještaj po Mjeri" data-en="Welcome to MA-BH Custom Furniture" data-de="Willkommen bei MA-BH Maßmöbel">Dobrodošli u MA-BH Namještaj po Mjeri</h2>
-    <p data-bs="Pravimo namještaj po vašoj mjeri, s fokusom na kvalitet i dizajn."
-       data-en="We create custom furniture tailored to your needs, focusing on quality and design."
-       data-de="Wir fertigen maßgeschneiderte Möbel nach Ihren Wünschen mit Fokus auf Qualität und Design.">
-      Pravimo namještaj po vašoj mjeri, s fokusom na kvalitet i dizajn.
-    </p>
-  </div>
-</section>
-
-<section id="about">
-  <div class="container fade-in">
-    <h2 data-bs="O Nama" data-en="About Us" data-de="Über Uns">O Nama</h2>
-    <p data-bs="MA-BH je porodična firma s dugogodišnjim iskustvom u izradi namještaja po mjeri."
-       data-en="MA-BH is a family business with many years of experience in custom furniture."
-       data-de="MA-BH ist ein Familienbetrieb mit langjähriger Erfahrung in der Herstellung von Maßmöbeln.">
-      MA-BH je porodična firma s dugogodišnjim iskustvom u izradi namještaja po mjeri.
-    </p>
-  </div>
-</section>
-
-<section id="services">
-  <div class="container fade-in">
-    <h2 data-bs="Usluge" data-en="Services" data-de="Dienstleistungen">Usluge</h2>
-    <ul>
-      <li data-bs="Izrada kuhinja po mjeri" data-en="Custom Kitchen Design" data-de="Maßgeschneiderte Küchen">Izrada kuhinja po mjeri</li>
-      <li data-bs="Ormani i garderoberi" data-en="Wardrobes & Closets" data-de="Schränke und Kleiderschränke">Ormani i garderoberi</li>
-      <li data-bs="Sto i stolice" data-en="Tables & Chairs" data-de="Tische und Stühle">Sto i stolice</li>
-      <li data-bs="Posebni projekti po narudžbi" data-en="Special Custom Projects" data-de="Besondere Maßprojekte">Posebni projekti po narudžbi</li>
-    </ul>
-  </div>
-</section>
-
-<section id="gallery">
-  <div class="container fade-in">
-    <h2 data-bs="Galerija" data-en="Gallery" data-de="Galerie">Galerija</h2>
-    <div class="gallery">
-      <img src="kitchen1.jpg" alt="Kuhinja 1">
-      <img src="wardrobe1.jpg" alt="Orman 1">
-      <img src="table1.jpg" alt="Sto 1">
-      <img src="kitchen2.jpg" alt="Kuhinja 2">
-      <img src="wardrobe2.jpg" alt="Orman 2">
-    </div>
-  </div>
-</section>
-
-<section id="reviews">
-  <div class="container fade-in">
-    <h2 data-bs="Recenzije" data-en="Reviews" data-de="Bewertungen">Recenzije</h2>
-    <div class="reviews">
-      <p data-bs="„Odličan kvalitet i brza izrada!“ – Jasmina" data-en="“Excellent quality and fast production!” – Jasmina" data-de="„Ausgezeichnete Qualität und schnelle Fertigung!“ – Jasmina">
-        „Odličan kvalitet i brza izrada!“ – Jasmina
-      </p>
-    </div>
-    <div class="reviews">
-      <p data-bs="„Preporučujem MA-BH za sve projekte po mjeri.“ – Amir" data-en="“I recommend MA-BH for all custom projects.” – Amir" data-de="„Ich empfehle MA-BH für alle Maßprojekte.“ – Amir">
-        „Preporučujem MA-BH za sve projekte po mjeri.“ – Amir
-      </p>
-    </div>
-  </div>
-</section>
-
-<section id="contact">
-  <div class="container fade-in">
-    <h2 data-bs="Kontakt" data-en="Contact" data-de="Kontakt">Kontakt</h2>
-    <p data-bs="Adresa: Tuzla, BiH" data-en="Address: Tuzla, Bosnia & Herzegovina" data-de="Adresse: Tuzla, Bosnien und Herzegowina">Adresa: Tuzla, BiH</p>
-    <p data-bs="Telefon: +387 XXX XXX XXX" data-en="Phone: +387 XXX XXX XXX" data-de="Telefon: +387 XXX XXX XXX">Telefon: +387 XXX XXX XXX</p>
-    <p data-bs="Email: info@mabh.ba" data-en="Email: info@mabh.ba" data-de="Email: info@mabh.ba">Email: info@mabh.ba</p>
-  </div>
-</section>
-
-<footer>
-  <p>&copy; 2026 MA-BH Namještaj po Mjeri</p>
-</footer>
-
-<script>
-function changeLang(lang) {
-  document.querySelectorAll('[data-bs]').forEach(el => {
-    if(lang==='bs') el.textContent = el.getAttribute('data-bs');
-    if(lang==='en') el.textContent = el.getAttribute('data-en');
-    if(lang==='de') el.textContent = el.getAttribute('data-de');
-  });
-}
-
-// Fade-in animation on scroll
-const faders = document.querySelectorAll('.fade-in');
-const appearOptions = { threshold:0.2, rootMargin:"0px 0px -50px 0px" };
-const appearOnScroll = new IntersectionObserver(function(entries, observer){
-  entries.forEach(entry=>{
-    if(entry.isIntersecting){
-      entry.target.style.animation = 'fadeUp 1s forwards';
-      observer.unobserve(entry.target);
-    }
-  });
-}, appearOptions);
-
-faders.forEach(fader => appearOnScroll.observe(fader));
-</script>
-
-</body>
-</html>
+    <a href="#home">Početna</a>
+    <a href="#about">O Nama</a>
+    <a href="#services">Usluge</a>
+    <a href="#gallery">Galer
