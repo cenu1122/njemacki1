@@ -1,19 +1,91 @@
-<!-- PORTFOLIO -->
-<section id="portfolio" class="light">
-    <div class="container">
-        <h2>Portfolio</h2>
-        <p>
-            Iza nas stoji veliki broj uspješno realizovanih projekata. Svaki komad namještaja
-            izrađen je prema individualnim zahtjevima klijenata, uz pažnju prema detaljima
-            i završnoj obradi.
-        </p>
+<!DOCTYPE html>
+<html lang="bs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Njemački 1</title>
 
-        <div class="gallery">
-            <img src="gallery/mabh1.jpg" alt="MA-BH Namještaj po mjeri 1">
-            <img src="gallery/mabh2.jpg" alt="MA-BH Namještaj po mjeri 2">
-            <img src="gallery/mabh3.jpg" alt="MA-BH Namještaj po mjeri 3">
-            <img src="gallery/mabh4.jpg" alt="MA-BH Namještaj po mjeri 4">
-            <img src="gallery/mabh5.jpg" alt="MA-BH Namještaj po mjeri 5">
-        </div>
-    </div>
-</section>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+
+    section {
+      padding: 40px 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    h1, h2 {
+      text-align: center;
+    }
+
+    /* ===== GALERIJA ===== */
+    .gallery-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    .gallery-container img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .gallery-container img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ========================= -->
+  <!-- 🔴 OVDJE IDE SAV TVOJ TEKST -->
+  <!-- NIŠTA NE MIJENJAJ -->
+  <!-- samo zalijepi postojeći HTML -->
+  <!-- ========================= -->
+
+  <!-- PRIMJER:
+  <section id="home">
+    <h1>Dobrodošli</h1>
+    <p>Ovdje ide sav tvoj tekst koji već imaš.</p>
+  </section>
+  -->
+
+  <!-- ========================= -->
+  <!-- GALERIJA -->
+  <!-- ========================= -->
+  <section id="gallery">
+    <h2>Galerija</h2>
+    <div class="gallery-container" id="galleryContainer"></div>
+  </section>
+
+  <!-- ========================= -->
+  <!-- JAVASCRIPT -->
+  <!-- ========================= -->
+  <script>
+    const galleryContainer = document.getElementById("galleryContainer");
+
+    // ⬇⬇⬇ PROMIJENI BROJ AKO IMAŠ VIŠE SLIKA
+    const numberOfImages = 12;
+
+    for (let i = 1; i <= numberOfImages; i++) {
+      const img = document.createElement("img");
+      img.src = `gallery/mabh${i}.jpg`;
+      img.alt = `Galerija slika ${i}`;
+      galleryContainer.appendChild(img);
+    }
+  </script>
+
+</body>
+</html>
