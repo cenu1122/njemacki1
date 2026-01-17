@@ -1,209 +1,23 @@
 <!DOCTYPE html>
 <html lang="bs">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MA-BH Namještaj po mjeri</title>
-
-<style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f4f4f4;
-    color: #333;
-}
-header {
-    background: #1f2933;
-    color: white;
-    padding: 60px 20px;
-    text-align: center;
-}
-nav {
-    position: sticky;
-    top: 0;
-    background: #111827;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
-    padding: 10px;
-    z-index: 1000;
-}
-nav a, nav button {
-    color: white;
-    background: #2563eb;
-    border: none;
-    padding: 8px 14px;
-    border-radius: 4px;
-    cursor: pointer;
-    text-decoration: none;
-}
-section {
-    padding: 60px 20px;
-    max-width: 1200px;
-    margin: auto;
-}
-h2 {
-    text-align: center;
-    margin-bottom: 30px;
-}
-.gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 15px;
-}
-.gallery img {
-    width: 100%;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-}
-.reviews {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-}
-.review {
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-}
-footer {
-    background: #1f2933;
-    color: white;
-    text-align: center;
-    padding: 15px;
-}
-</style>
-</head>
-
-<body>
-
-<nav>
-    <a href="#home" id="navHome">Početna</a>
-    <a href="#about" id="navAbout">O nama</a>
-    <a href="#gallerySec" id="navGallery">Galerija</a>
-    <a href="#reviews" id="navReviews">Recenzije</a>
-    <a href="#contact" id="navContact">Kontakt</a>
-    <button onclick="setLang('bs')">🇧🇦</button>
-    <button onclick="setLang('en')">🇬🇧</button>
-    <button onclick="setLang('de')">🇩🇪</button>
-</nav>
-
 <header id="home">
     <h1 id="title">MA-BH Namještaj po mjeri</h1>
-    <p id="subtitle">Kvalitet, dizajn i precizna izrada</p>
+    <p id="subtitle">
+        Izrađujemo kvalitetan namještaj po mjeri koji savršeno odgovara
+        vašem prostoru, stilu i potrebama.
+    </p>
+    <p>
+        Bilo da opremate stan, kuću, poslovni prostor ili kancelariju,
+        MA-BH vam nudi kompletna rješenja – od ideje i mjerenja,
+        preko dizajna, do precizne izrade i montaže.
+        Naš cilj je da svaki komad namještaja bude funkcionalan,
+        dugotrajan i estetski prilagođen vašem prostoru.
+    </p>
+    <p>
+        Specijalizovani smo za kuhinje po mjeri, plakare,
+        ugradbene ormare, komode, police, kao i namještaj
+        za poslovne i ugostiteljske objekte.
+        Koristimo provjerene materijale i modernu tehnologiju
+        kako bismo osigurali vrhunski kvalitet završne obrade.
+    </p>
 </header>
-
-<section id="about">
-    <h2 id="aboutTitle">O nama</h2>
-    <p id="aboutText">
-        MA-BH je firma specijalizovana za izradu namještaja po mjeri.
-        Izrađujemo kuhinje, plakare, komode i kompletna rješenja za
-        stambene i poslovne prostore.
-    </p>
-</section>
-
-<section id="gallerySec">
-    <h2 id="galleryTitle">Galerija radova</h2>
-    <div class="gallery" id="gallery"></div>
-</section>
-
-<section id="reviews">
-    <h2 id="reviewsTitle">Recenzije klijenata</h2>
-    <div class="reviews">
-        <div class="review" id="rev1">
-            ⭐⭐⭐⭐⭐<br>
-            Odličan kvalitet i profesionalna izrada!
-        </div>
-        <div class="review" id="rev2">
-            ⭐⭐⭐⭐⭐<br>
-            Sve urađeno po dogovoru i u roku.
-        </div>
-        <div class="review" id="rev3">
-            ⭐⭐⭐⭐⭐<br>
-            Preporuka svima koji žele namještaj po mjeri.
-        </div>
-    </div>
-</section>
-
-<section id="contact">
-    <h2 id="contactTitle">Kontakt</h2>
-    <p id="contactText">
-        📧 Email: <b>info@mabh.ba</b><br>
-        📞 Telefon: <b>+387 XX XXX XXX</b>
-    </p>
-</section>
-
-<footer>
-    © 2026 MA-BH Namještaj po mjeri
-</footer>
-
-<script>
-// GALERIJA
-const gallery = document.getElementById("gallery");
-for (let i = 1; i <= 47; i++) {
-    const img = document.createElement("img");
-    img.src = `GALLERY/MABH${i}.jpg`;
-    img.alt = `MA-BH Namještaj ${i}`;
-    gallery.appendChild(img);
-}
-
-// JEZICI
-const text = {
-    bs: {
-        navHome:"Početna", navAbout:"O nama", navGallery:"Galerija",
-        navReviews:"Recenzije", navContact:"Kontakt",
-        title:"MA-BH Namještaj po mjeri",
-        subtitle:"Kvalitet, dizajn i precizna izrada",
-        aboutTitle:"O nama",
-        aboutText:"MA-BH je firma specijalizovana za izradu namještaja po mjeri. Kuhinje, plakari i kompletna rješenja.",
-        galleryTitle:"Galerija radova",
-        reviewsTitle:"Recenzije klijenata",
-        rev1:"⭐⭐⭐⭐⭐<br>Odličan kvalitet i profesionalna izrada!",
-        rev2:"⭐⭐⭐⭐⭐<br>Sve urađeno po dogovoru i u roku.",
-        rev3:"⭐⭐⭐⭐⭐<br>Preporuka svima koji žele namještaj po mjeri.",
-        contactTitle:"Kontakt",
-        contactText:"📧 Email: info@mabh.ba<br>📞 Telefon: +387 XX XXX XXX"
-    },
-    en: {
-        navHome:"Home", navAbout:"About", navGallery:"Gallery",
-        navReviews:"Reviews", navContact:"Contact",
-        title:"MA-BH Custom Furniture",
-        subtitle:"Quality, design and precision craftsmanship",
-        aboutTitle:"About Us",
-        aboutText:"MA-BH specializes in custom furniture including kitchens, wardrobes and full interior solutions.",
-        galleryTitle:"Project Gallery",
-        reviewsTitle:"Customer Reviews",
-        rev1:"⭐⭐⭐⭐⭐<br>Excellent quality and craftsmanship!",
-        rev2:"⭐⭐⭐⭐⭐<br>Delivered on time and as agreed.",
-        rev3:"⭐⭐⭐⭐⭐<br>Highly recommended custom furniture.",
-        contactTitle:"Contact",
-        contactText:"📧 Email: info@mabh.ba<br>📞 Phone: +387 XX XXX XXX"
-    },
-    de: {
-        navHome:"Startseite", navAbout:"Über uns", navGallery:"Galerie",
-        navReviews:"Bewertungen", navContact:"Kontakt",
-        title:"MA-BH Maßgefertigte Möbel",
-        subtitle:"Qualität, Design und Präzision",
-        aboutTitle:"Über uns",
-        aboutText:"MA-BH fertigt maßgeschneiderte Möbel für Wohn- und Geschäftsräume.",
-        galleryTitle:"Galerie",
-        reviewsTitle:"Kundenbewertungen",
-        rev1:"⭐⭐⭐⭐⭐<br>Sehr hohe Qualität!",
-        rev2:"⭐⭐⭐⭐⭐<br>Pünktlich und professionell.",
-        rev3:"⭐⭐⭐⭐⭐<br>Absolute Empfehlung.",
-        contactTitle:"Kontakt",
-        contactText:"📧 E-Mail: info@mabh.ba<br>📞 Telefon: +387 XX XXX XXX"
-    }
-};
-
-function setLang(l) {
-    for (let id in text[l]) {
-        document.getElementById(id).innerHTML = text[l][id];
-    }
-}
-</script>
-
-</body>
-</html>
