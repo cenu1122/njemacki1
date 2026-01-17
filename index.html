@@ -1,96 +1,154 @@
 <!DOCTYPE html>
 <html lang="bs">
 <head>
-    <meta charset="UTF-8">
-    <title>MA-BH Namještaj po mjeri</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MA-BH Namještaj po mjeri</title>
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f5f5f5;
-            color: #333;
-        }
-
-        header {
-            background: #111;
-            color: #fff;
-            padding: 30px 20px;
-            text-align: center;
-        }
-
-        section {
-            max-width: 1200px;
-            margin: auto;
-            padding: 40px 20px;
-        }
-
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 15px;
-        }
-
-        .gallery img {
-            width: 100%;
-            height: 230px;
-            object-fit: cover;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            transition: transform 0.3s;
-        }
-
-        .gallery img:hover {
-            transform: scale(1.05);
-        }
-
-        .contact {
-            background: #111;
-            color: #fff;
-            text-align: center;
-            padding: 40px 20px;
-        }
-
-        footer {
-            background: #000;
-            color: #aaa;
-            text-align: center;
-            padding: 15px;
-            font-size: 14px;
-        }
-    </style>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #f5f5f5;
+    color: #333;
+}
+header {
+    background: #1f2933;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+nav {
+    background: #111827;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 10px;
+}
+nav button {
+    background: #2563eb;
+    border: none;
+    color: #fff;
+    padding: 8px 14px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+section {
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: auto;
+}
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 15px;
+}
+.gallery img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+footer {
+    background: #1f2933;
+    color: #fff;
+    text-align: center;
+    padding: 15px;
+}
+</style>
 </head>
+
 <body>
 
 <header>
-    <h1>MA-BH Namještaj po mjeri</h1>
-    <p>Kuhinje • Plakari • Ormari • Enterijeri</p>
+    <h1 id="title">MA-BH Namještaj po mjeri</h1>
+    <p id="subtitle">Kvalitet, dizajn i precizna izrada</p>
 </header>
 
+<nav>
+    <button onclick="setLang('bs')">🇧🇦 Bosanski</button>
+    <button onclick="setLang('en')">🇬🇧 English</button>
+    <button onclick="setLang('de')">🇩🇪 Deutsch</button>
+</nav>
+
 <section>
-    <h2 style="text-align:center;">Galerija radova</h2>
+    <h2 id="aboutTitle">O nama</h2>
+    <p id="aboutText">
+        MA-BH se bavi izradom namještaja po mjeri: kuhinje, plakari, komode,
+        kancelarijski i stambeni namještaj po želji klijenta.
+    </p>
+</section>
+
+<section>
+    <h2 id="galleryTitle">Galerija radova</h2>
     <div class="gallery" id="gallery"></div>
 </section>
 
-<div class="contact">
-    <h2>Kontakt</h2>
-    <p>Email: <a href="mailto:halilovicnusret8@gmail.com" style="color:#ffd700;">halilovicnusret8@gmail.com</a></p>
-</div>
+<section>
+    <h2 id="contactTitle">Kontakt</h2>
+    <p id="contactText">
+        📧 Email: <b>info@mabh.ba</b><br>
+        📞 Telefon: <b>+387 XX XXX XXX</b>
+    </p>
+</section>
 
 <footer>
     © 2026 MA-BH Namještaj po mjeri
 </footer>
 
 <script>
-    const gallery = document.getElementById("gallery");
+/* GALERIJA */
+const gallery = document.getElementById("gallery");
+for (let i = 1; i <= 47; i++) {
+    const img = document.createElement("img");
+    img.src = `GALLERY/MABH${i}.jpg`;
+    img.alt = `MA-BH Namještaj ${i}`;
+    gallery.appendChild(img);
+}
 
-    for (let i = 1; i <= 47; i++) {
-        const img = document.createElement("img");
-        img.src = `gallery/mabh${i}.jpg`;
-        img.alt = "MA-BH namještaj po mjeri";
-        gallery.appendChild(img);
+/* JEZICI */
+const content = {
+    bs: {
+        title: "MA-BH Namještaj po mjeri",
+        subtitle: "Kvalitet, dizajn i precizna izrada",
+        aboutTitle: "O nama",
+        aboutText: "MA-BH se bavi izradom namještaja po mjeri: kuhinje, plakari, komode i kompletna rješenja po želji klijenta.",
+        galleryTitle: "Galerija radova",
+        contactTitle: "Kontakt",
+        contactText: "📧 Email: info@mabh.ba<br>📞 Telefon: +387 XX XXX XXX"
+    },
+    en: {
+        title: "MA-BH Custom Furniture",
+        subtitle: "Quality, design and precision craftsmanship",
+        aboutTitle: "About Us",
+        aboutText: "MA-BH specializes in custom-made furniture: kitchens, wardrobes, cabinets and full interior solutions.",
+        galleryTitle: "Project Gallery",
+        contactTitle: "Contact",
+        contactText: "📧 Email: info@mabh.ba<br>📞 Phone: +387 XX XXX XXX"
+    },
+    de: {
+        title: "MA-BH Maßgefertigte Möbel",
+        subtitle: "Qualität, Design und präzise Verarbeitung",
+        aboutTitle: "Über uns",
+        aboutText: "MA-BH fertigt maßgeschneiderte Möbel: Küchen, Schränke und komplette Innenlösungen.",
+        galleryTitle: "Galerie",
+        contactTitle: "Kontakt",
+        contactText: "📧 E-Mail: info@mabh.ba<br>📞 Telefon: +387 XX XXX XXX"
     }
+};
+
+function setLang(lang) {
+    document.getElementById("title").innerHTML = content[lang].title;
+    document.getElementById("subtitle").innerHTML = content[lang].subtitle;
+    document.getElementById("aboutTitle").innerHTML = content[lang].aboutTitle;
+    document.getElementById("aboutText").innerHTML = content[lang].aboutText;
+    document.getElementById("galleryTitle").innerHTML = content[lang].galleryTitle;
+    document.getElementById("contactTitle").innerHTML = content[lang].contactTitle;
+    document.getElementById("contactText").innerHTML = content[lang].contactText;
+}
 </script>
 
 </body>
