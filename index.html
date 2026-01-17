@@ -1,52 +1,97 @@
 <!DOCTYPE html>
 <html lang="bs">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MA-BH Namještaj po Mjeri</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    * { box-sizing: border-box; margin:0; padding:0; }
-    body { font-family: 'Roboto', sans-serif; line-height:1.6; color:#333; }
-    a { text-decoration:none; color:inherit; }
-    img { max-width:100%; border-radius:8px; }
+    <meta charset="UTF-8">
+    <title>MA-BH Namještaj po mjeri</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    header { background:#222; color:white; padding:20px 0; position:sticky; top:0; z-index:100; }
-    header h1 { text-align:center; margin-bottom:10px; font-size:2rem; }
-    nav { text-align:center; margin-bottom:10px; }
-    nav a { margin:0 15px; font-weight:700; color:white; transition:0.3s; }
-    nav a:hover { color:#f0a500; }
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
 
-    .lang-switch { text-align:center; margin-top:5px; }
-    .lang-switch button { margin:0 5px; padding:5px 12px; background:#f0a500; border:none; border-radius:5px; cursor:pointer; color:white; font-weight:bold; }
-    .lang-switch button:hover { background:#ffbf00; }
+        header {
+            background: #111;
+            color: #fff;
+            padding: 30px 20px;
+            text-align: center;
+        }
 
-    section { padding:80px 20px; }
-    .container { max-width:1200px; margin:auto; }
-    h2 { font-size:2rem; margin-bottom:20px; text-align:center; }
-    p { margin-bottom:20px; }
-    ul { list-style:none; text-align:center; padding:0; }
-    li { margin-bottom:10px; font-weight:bold; }
+        section {
+            max-width: 1200px;
+            margin: auto;
+            padding: 40px 20px;
+        }
 
-    .gallery { display:grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap:15px; }
-    .reviews { background:#f4f4f4; padding:20px; border-radius:8px; margin:15px auto; max-width:600px; box-shadow:0 2px 5px rgba(0,0,0,0.1); }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+        }
 
-    footer { background:#222; color:white; text-align:center; padding:20px; }
+        .gallery img {
+            width: 100%;
+            height: 230px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+        }
 
-    .fade-in { opacity:0; transform:translateY(20px); animation:fadeUp 1s forwards; }
-    @keyframes fadeUp { to { opacity:1; transform:translateY(0); } }
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
 
-    @media(max-width:768px) {
-      nav a { display:block; margin:10px 0; }
-    }
-  </style>
+        .contact {
+            background: #111;
+            color: #fff;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        footer {
+            background: #000;
+            color: #aaa;
+            text-align: center;
+            padding: 15px;
+            font-size: 14px;
+        }
+    </style>
 </head>
 <body>
 
 <header>
-  <h1>MA-BH Namještaj po Mjeri</h1>
-  <nav>
-    <a href="#home">Početna</a>
-    <a href="#about">O Nama</a>
-    <a href="#services">Usluge</a>
-    <a href="#gallery">Galer
+    <h1>MA-BH Namještaj po mjeri</h1>
+    <p>Kuhinje • Plakari • Ormari • Enterijeri</p>
+</header>
+
+<section>
+    <h2 style="text-align:center;">Galerija radova</h2>
+    <div class="gallery" id="gallery"></div>
+</section>
+
+<div class="contact">
+    <h2>Kontakt</h2>
+    <p>Email: <a href="mailto:halilovicnusret8@gmail.com" style="color:#ffd700;">halilovicnusret8@gmail.com</a></p>
+</div>
+
+<footer>
+    © 2026 MA-BH Namještaj po mjeri
+</footer>
+
+<script>
+    const gallery = document.getElementById("gallery");
+
+    for (let i = 1; i <= 47; i++) {
+        const img = document.createElement("img");
+        img.src = `gallery/mabh${i}.jpg`;
+        img.alt = "MA-BH namještaj po mjeri";
+        gallery.appendChild(img);
+    }
+</script>
+
+</body>
+</html>
