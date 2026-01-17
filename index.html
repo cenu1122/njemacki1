@@ -7,40 +7,45 @@
 
 <style>
 body {
-    font-family: Arial, sans-serif;
     margin: 0;
-    background: #f5f5f5;
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
     color: #333;
 }
 header {
     background: #1f2933;
-    color: #fff;
-    padding: 20px;
+    color: white;
+    padding: 60px 20px;
     text-align: center;
 }
 nav {
+    position: sticky;
+    top: 0;
     background: #111827;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;
+    gap: 15px;
     padding: 10px;
+    z-index: 1000;
 }
-nav button {
+nav a, nav button {
+    color: white;
     background: #2563eb;
     border: none;
-    color: #fff;
     padding: 8px 14px;
-    cursor: pointer;
     border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
 }
 section {
-    padding: 40px 20px;
+    padding: 60px 20px;
     max-width: 1200px;
     margin: auto;
 }
 h2 {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 .gallery {
     display: grid;
@@ -50,11 +55,22 @@ h2 {
 .gallery img {
     width: 100%;
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+.reviews {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+.review {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
 }
 footer {
     background: #1f2933;
-    color: #fff;
+    color: white;
     text-align: center;
     padding: 15px;
 }
@@ -63,31 +79,55 @@ footer {
 
 <body>
 
-<header>
+<nav>
+    <a href="#home" id="navHome">Početna</a>
+    <a href="#about" id="navAbout">O nama</a>
+    <a href="#gallerySec" id="navGallery">Galerija</a>
+    <a href="#reviews" id="navReviews">Recenzije</a>
+    <a href="#contact" id="navContact">Kontakt</a>
+    <button onclick="setLang('bs')">🇧🇦</button>
+    <button onclick="setLang('en')">🇬🇧</button>
+    <button onclick="setLang('de')">🇩🇪</button>
+</nav>
+
+<header id="home">
     <h1 id="title">MA-BH Namještaj po mjeri</h1>
     <p id="subtitle">Kvalitet, dizajn i precizna izrada</p>
 </header>
 
-<nav>
-    <button onclick="setLang('bs')">🇧🇦 Bosanski</button>
-    <button onclick="setLang('en')">🇬🇧 English</button>
-    <button onclick="setLang('de')">🇩🇪 Deutsch</button>
-</nav>
-
-<section>
+<section id="about">
     <h2 id="aboutTitle">O nama</h2>
     <p id="aboutText">
-        MA-BH se bavi izradom namještaja po mjeri: kuhinje, plakari, komode,
-        kancelarijski i stambeni namještaj po želji klijenta.
+        MA-BH je firma specijalizovana za izradu namještaja po mjeri.
+        Izrađujemo kuhinje, plakare, komode i kompletna rješenja za
+        stambene i poslovne prostore.
     </p>
 </section>
 
-<section>
+<section id="gallerySec">
     <h2 id="galleryTitle">Galerija radova</h2>
     <div class="gallery" id="gallery"></div>
 </section>
 
-<section>
+<section id="reviews">
+    <h2 id="reviewsTitle">Recenzije klijenata</h2>
+    <div class="reviews">
+        <div class="review" id="rev1">
+            ⭐⭐⭐⭐⭐<br>
+            Odličan kvalitet i profesionalna izrada!
+        </div>
+        <div class="review" id="rev2">
+            ⭐⭐⭐⭐⭐<br>
+            Sve urađeno po dogovoru i u roku.
+        </div>
+        <div class="review" id="rev3">
+            ⭐⭐⭐⭐⭐<br>
+            Preporuka svima koji žele namještaj po mjeri.
+        </div>
+    </div>
+</section>
+
+<section id="contact">
     <h2 id="contactTitle">Kontakt</h2>
     <p id="contactText">
         📧 Email: <b>info@mabh.ba</b><br>
@@ -100,7 +140,7 @@ footer {
 </footer>
 
 <script>
-/* GALERIJA */
+// GALERIJA
 const gallery = document.getElementById("gallery");
 for (let i = 1; i <= 47; i++) {
     const img = document.createElement("img");
@@ -109,45 +149,59 @@ for (let i = 1; i <= 47; i++) {
     gallery.appendChild(img);
 }
 
-/* JEZICI */
-const content = {
+// JEZICI
+const text = {
     bs: {
-        title: "MA-BH Namještaj po mjeri",
-        subtitle: "Kvalitet, dizajn i precizna izrada",
-        aboutTitle: "O nama",
-        aboutText: "MA-BH se bavi izradom namještaja po mjeri: kuhinje, plakari, komode i kompletna rješenja po želji klijenta.",
-        galleryTitle: "Galerija radova",
-        contactTitle: "Kontakt",
-        contactText: "📧 Email: info@mabh.ba<br>📞 Telefon: +387 XX XXX XXX"
+        navHome:"Početna", navAbout:"O nama", navGallery:"Galerija",
+        navReviews:"Recenzije", navContact:"Kontakt",
+        title:"MA-BH Namještaj po mjeri",
+        subtitle:"Kvalitet, dizajn i precizna izrada",
+        aboutTitle:"O nama",
+        aboutText:"MA-BH je firma specijalizovana za izradu namještaja po mjeri. Kuhinje, plakari i kompletna rješenja.",
+        galleryTitle:"Galerija radova",
+        reviewsTitle:"Recenzije klijenata",
+        rev1:"⭐⭐⭐⭐⭐<br>Odličan kvalitet i profesionalna izrada!",
+        rev2:"⭐⭐⭐⭐⭐<br>Sve urađeno po dogovoru i u roku.",
+        rev3:"⭐⭐⭐⭐⭐<br>Preporuka svima koji žele namještaj po mjeri.",
+        contactTitle:"Kontakt",
+        contactText:"📧 Email: info@mabh.ba<br>📞 Telefon: +387 XX XXX XXX"
     },
     en: {
-        title: "MA-BH Custom Furniture",
-        subtitle: "Quality, design and precision craftsmanship",
-        aboutTitle: "About Us",
-        aboutText: "MA-BH specializes in custom-made furniture: kitchens, wardrobes, cabinets and full interior solutions.",
-        galleryTitle: "Project Gallery",
-        contactTitle: "Contact",
-        contactText: "📧 Email: info@mabh.ba<br>📞 Phone: +387 XX XXX XXX"
+        navHome:"Home", navAbout:"About", navGallery:"Gallery",
+        navReviews:"Reviews", navContact:"Contact",
+        title:"MA-BH Custom Furniture",
+        subtitle:"Quality, design and precision craftsmanship",
+        aboutTitle:"About Us",
+        aboutText:"MA-BH specializes in custom furniture including kitchens, wardrobes and full interior solutions.",
+        galleryTitle:"Project Gallery",
+        reviewsTitle:"Customer Reviews",
+        rev1:"⭐⭐⭐⭐⭐<br>Excellent quality and craftsmanship!",
+        rev2:"⭐⭐⭐⭐⭐<br>Delivered on time and as agreed.",
+        rev3:"⭐⭐⭐⭐⭐<br>Highly recommended custom furniture.",
+        contactTitle:"Contact",
+        contactText:"📧 Email: info@mabh.ba<br>📞 Phone: +387 XX XXX XXX"
     },
     de: {
-        title: "MA-BH Maßgefertigte Möbel",
-        subtitle: "Qualität, Design und präzise Verarbeitung",
-        aboutTitle: "Über uns",
-        aboutText: "MA-BH fertigt maßgeschneiderte Möbel: Küchen, Schränke und komplette Innenlösungen.",
-        galleryTitle: "Galerie",
-        contactTitle: "Kontakt",
-        contactText: "📧 E-Mail: info@mabh.ba<br>📞 Telefon: +387 XX XXX XXX"
+        navHome:"Startseite", navAbout:"Über uns", navGallery:"Galerie",
+        navReviews:"Bewertungen", navContact:"Kontakt",
+        title:"MA-BH Maßgefertigte Möbel",
+        subtitle:"Qualität, Design und Präzision",
+        aboutTitle:"Über uns",
+        aboutText:"MA-BH fertigt maßgeschneiderte Möbel für Wohn- und Geschäftsräume.",
+        galleryTitle:"Galerie",
+        reviewsTitle:"Kundenbewertungen",
+        rev1:"⭐⭐⭐⭐⭐<br>Sehr hohe Qualität!",
+        rev2:"⭐⭐⭐⭐⭐<br>Pünktlich und professionell.",
+        rev3:"⭐⭐⭐⭐⭐<br>Absolute Empfehlung.",
+        contactTitle:"Kontakt",
+        contactText:"📧 E-Mail: info@mabh.ba<br>📞 Telefon: +387 XX XXX XXX"
     }
 };
 
-function setLang(lang) {
-    document.getElementById("title").innerHTML = content[lang].title;
-    document.getElementById("subtitle").innerHTML = content[lang].subtitle;
-    document.getElementById("aboutTitle").innerHTML = content[lang].aboutTitle;
-    document.getElementById("aboutText").innerHTML = content[lang].aboutText;
-    document.getElementById("galleryTitle").innerHTML = content[lang].galleryTitle;
-    document.getElementById("contactTitle").innerHTML = content[lang].contactTitle;
-    document.getElementById("contactText").innerHTML = content[lang].contactText;
+function setLang(l) {
+    for (let id in text[l]) {
+        document.getElementById(id).innerHTML = text[l][id];
+    }
 }
 </script>
 
