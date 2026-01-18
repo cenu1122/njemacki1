@@ -1,23 +1,104 @@
 <!DOCTYPE html>
 <html lang="bs">
-<header id="home">
-    <h1 id="title">MA-BH Namještaj po mjeri</h1>
-    <p id="subtitle">
-        Izrađujemo kvalitetan namještaj po mjeri koji savršeno odgovara
-        vašem prostoru, stilu i potrebama.
-    </p>
-    <p>
-        Bilo da opremate stan, kuću, poslovni prostor ili kancelariju,
-        MA-BH vam nudi kompletna rješenja – od ideje i mjerenja,
-        preko dizajna, do precizne izrade i montaže.
-        Naš cilj je da svaki komad namještaja bude funkcionalan,
-        dugotrajan i estetski prilagođen vašem prostoru.
-    </p>
-    <p>
-        Specijalizovani smo za kuhinje po mjeri, plakare,
-        ugradbene ormare, komode, police, kao i namještaj
-        za poslovne i ugostiteljske objekte.
-        Koristimo provjerene materijale i modernu tehnologiju
-        kako bismo osigurali vrhunski kvalitet završne obrade.
-    </p>
+<head>
+  <meta charset="UTF-8" />
+  <title>Usluge Tuzla</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; background:#f4f4f4; }
+    header { background:#0a5aa5; color:#fff; padding:15px; text-align:center; }
+    section { padding:20px; }
+    .card { background:#fff; padding:20px; border-radius:8px; margin-bottom:20px; box-shadow:0 2px 6px rgba(0,0,0,0.1); }
+    h2 { margin-top:0; }
+    input, textarea, button { width:100%; padding:10px; margin:8px 0; }
+    button { background:#0a5aa5; color:#fff; border:none; cursor:pointer; }
+    button:hover { background:#084a87; }
+    .hidden { display:none; }
+    footer { text-align:center; padding:10px; font-size:14px; color:#555; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Usluge Tuzla</h1>
+  <p>Seljenje • Čišćenje • Klima • Pročepljavanje odvoda</p>
 </header>
+
+<section>
+  <!-- KLIJENTI -->
+  <div class="card">
+    <h2>Pošaljite upit</h2>
+    <form onsubmit="sendRequest(event)">
+      <input type="text" placeholder="Ime i prezime" required />
+      <input type="text" placeholder="Telefon" required />
+      <select required>
+        <option value="">Izaberite uslugu</option>
+        <option>Seljenje</option>
+        <option>Čišćenje</option>
+        <option>Klima servis / montaža</option>
+        <option>Pročepljavanje odvoda</option>
+      </select>
+      <textarea placeholder="Opišite problem / posao" required></textarea>
+      <button type="submit">Pošalji upit</button>
+    </form>
+    <p id="clientMsg"></p>
+  </div>
+
+  <!-- RADNICI LOGIN -->
+  <div class="card">
+    <h2>Prijava za radnike</h2>
+    <form onsubmit="loginWorker(event)">
+      <input type="text" id="workerUser" placeholder="Korisničko ime" required />
+      <input type="password" id="workerPass" placeholder="Lozinka" required />
+      <button type="submit">Prijavi se</button>
+    </form>
+    <p id="loginMsg"></p>
+  </div>
+
+  <!-- RADNIČKI PANEL -->
+  <div class="card hidden" id="workerPanel">
+    <h2>Radnički panel</h2>
+    <p>Dobrodošli. Ovdje ćete dobijati informacije o novim poslovima.</p>
+    <ul>
+      <li>✔ Seljenje – Tuzla</li>
+      <li>✔ Čišćenje – po dogovoru</li>
+      <li>✔ Hitne intervencije – odvodi</li>
+    </ul>
+    <button onclick="logout()">Odjava</button>
+  </div>
+</section>
+
+<footer>
+  © 2026 Usluge Tuzla | Brza i pouzdana pomoć
+</footer>
+
+<script>
+  // DEMO login (bez servera)
+  const demoUser = "radnik";
+  const demoPass = "1234";
+
+  function loginWorker(e){
+    e.preventDefault();
+    const u = document.getElementById('workerUser').value;
+    const p = document.getElementById('workerPass').value;
+
+    if(u === demoUser && p === demoPass){
+      document.getElementById('workerPanel').classList.remove('hidden');
+      document.getElementById('loginMsg').innerText = "Uspješna prijava";
+    } else {
+      document.getElementById('loginMsg').innerText = "Pogrešni podaci";
+    }
+  }
+
+  function logout(){
+    document.getElementById('workerPanel').classList.add('hidden');
+  }
+
+  function sendRequest(e){
+    e.preventDefault();
+    document.getElementById('clientMsg').innerText = "Upit je poslan. Javljamo se uskoro.";
+  }
+</script>
+
+</body>
+</html>
