@@ -34,6 +34,21 @@
         iframe { width:100%; height:100%; border:0; border-radius:10px; }
     </style>
 </head>
+    <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+<script>
+  const lightbox = GLightbox({ selector: '.glightbox' });
+
+  const gallery = document.querySelector('.gallery');
+  for (let i = 1; i <= 47; i++) {
+    const link = document.createElement('a');
+    link.href = `gallery/MABH${i}.jpg`;
+    link.className = 'glightbox';
+    link.setAttribute('data-gallery', 'mabh-gallery');
+
+    const img = document.createElement('img');
+    img.src = `gallery/MABH${i}.jpg`;
+    img.alt = `MAB
+
 <body>
 
     <header>
@@ -126,3 +141,4 @@
 
 </body>
 </html>
+
