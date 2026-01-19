@@ -21,19 +21,34 @@
   section { padding:60px 20px; max-width:1200px; margin:auto; }
   h2 { text-align:center; margin-bottom:40px; }
 
-  /* Folder grid */
-  .folder-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(150px,1fr)); gap:20px; justify-items:center; margin-bottom:40px; }
-  .folder { background:#ecf0f1; border-radius:10px; padding:20px; text-align:center; cursor:pointer; transition:0.3s; width:150px; }
-  .folder:hover { background:#e67e22; color:#fff; transform:scale(1.05); }
-  .folder-icon { font-size:50px; margin-bottom:10px; }
+  #pocetna { text-align:center; padding:100px 20px; background:#ecf0f1; }
+  #pocetna img { width:80%; max-width:700px; border-radius:15px; margin-top:20px; }
 
-  /* Gallery grid */
+  .recenzije { display:flex; flex-wrap:wrap; justify-content:center; gap:20px; }
+  .recenzija { background:#fff; padding:20px; border-radius:10px; width:300px; box-shadow:0 2px 8px rgba(0,0,0,0.1); text-align:center; }
+
+  form { max-width:500px; margin:auto; display:flex; flex-direction:column; }
+  input, textarea, button { padding:10px; margin-bottom:15px; border-radius:5px; border:1px solid #ccc; font-size:1rem; }
+  button { background:#2c3e50; color:#fff; border:none; cursor:pointer; }
+  button:hover { background:#e67e22; }
+
+  /* Folder grid */
+  .folder-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(160px,1fr)); gap:20px; justify-items:center; margin-bottom:40px; }
+  .folder { background:#ecf0f1; border-radius:10px; padding:10px; text-align:center; cursor:pointer; transition:0.3s; width:160px; }
+  .folder:hover { background:#e67e22; color:#fff; transform:scale(1.05); }
+
+  .folder img { width:100%; border-radius:10px; height:100px; object-fit:cover; margin-bottom:5px; }
+  .folder-title { font-weight:bold; }
+
   .gallery { display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:15px; margin-top:20px; }
   .gallery img { width:100%; border-radius:10px; cursor:pointer; transition:0.3s; }
   .gallery img:hover { transform:scale(1.05); }
 
   button.back { margin-bottom:20px; padding:10px 20px; background:#2c3e50; color:#fff; border:none; border-radius:5px; cursor:pointer; }
   button.back:hover { background:#e67e22; }
+
+  .map-container { margin:40px auto; max-width:800px; height:400px; }
+  iframe { width:100%; height:100%; border:0; border-radius:10px; }
 
   footer { background:#2c3e50; color:#fff; text-align:center; padding:20px; margin-top:40px; }
 </style>
@@ -48,17 +63,65 @@
 
 <nav>
   <ul>
+    <li><a href="#pocetna">Početna</a></li>
+    <li><a href="#o-nama">O nama</a></li>
+    <li><a href="#recenzije">Recenzije</a></li>
     <li><a href="#galerija">Galerija</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+    <li><a href="#lokacija">Lokacija</a></li>
   </ul>
 </nav>
 
+<!-- Početna -->
+<section id="pocetna">
+  <h1>Dobrodošli u ma-BH Namještaj</h1>
+  <p>Izrada namještaja po mjeri za svaki dom – kvalitetno, precizno i po vašim željama.</p>
+  <img src="gallery/MABH1.jpg" alt="Početna slika">
+</section>
+
+<!-- O nama -->
+<section id="o-nama">
+  <h2>O nama</h2>
+  <p>ma-BH je firma specijalizirana za izradu namještaja po mjeri. Sa više od deset godina iskustva...</p>
+</section>
+
+<!-- Recenzije -->
+<section id="recenzije">
+  <h2>Recenzije</h2>
+  <div class="recenzije">
+    <div class="recenzija"><p>"Izvrsna usluga!"</p><strong>- Marko P.</strong></div>
+    <div class="recenzija"><p>"Savršeno odgovara mom prostoru."</p><strong>- Ana S.</strong></div>
+    <div class="recenzija"><p>"Profesionalni i ljubazni."</p><strong>- Ivica K.</strong></div>
+  </div>
+</section>
+
+<!-- Galerija -->
 <section id="galerija">
   <h2>Galerija</h2>
-  <!-- Folderi -->
   <div id="folder-container" class="folder-grid"></div>
-  <!-- Slike odabrane kategorije -->
   <div id="gallery-container" class="gallery" style="display:none;"></div>
   <button id="back-button" class="back" style="display:none;">← Nazad na kategorije</button>
+</section>
+
+<!-- Kontakt -->
+<section id="kontakt">
+  <h2>Kontakt</h2>
+  <p>Imate pitanje ili želite dogovoriti konzultacije? Ispunite formu ispod.</p>
+  <form>
+    <input type="text" placeholder="Vaše ime" required>
+    <input type="email" placeholder="Vaš email" required>
+    <input type="text" placeholder="Predmet" required>
+    <textarea placeholder="Vaša poruka" rows="5" required></textarea>
+    <button type="submit">Pošalji</button>
+  </form>
+</section>
+
+<!-- Lokacija -->
+<section id="lokacija">
+  <h2>Naša lokacija</h2>
+  <div class="map-container">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d..." allowfullscreen="" loading="lazy"></iframe>
+  </div>
 </section>
 
 <footer>
@@ -69,7 +132,6 @@
 <script>
 const lightbox = GLightbox({ selector: '.glightbox' });
 
-// Definicija kategorija i slika
 const galleries = [
   { title: "Kuhinje", images: [1,2,3,4,5] },
   { title: "Američki plakari i ormari", images: [6,7,8,9,10] },
@@ -87,16 +149,14 @@ const folderContainer = document.getElementById('folder-container');
 const galleryContainer = document.getElementById('gallery-container');
 const backButton = document.getElementById('back-button');
 
-// Prikaz foldera
 galleries.forEach(cat => {
   const div = document.createElement('div');
   div.className = 'folder';
-  div.innerHTML = `<div class="folder-icon">📁</div><div>${cat.title}</div>`;
+  div.innerHTML = `<img src="gallery/MABH${cat.images[0]}.jpg" alt="${cat.title}"><div class="folder-title">${cat.title}</div>`;
   div.addEventListener('click', () => openCategory(cat));
   folderContainer.appendChild(div);
 });
 
-// Funkcija za otvaranje kategorije
 function openCategory(cat) {
   folderContainer.style.display = 'none';
   galleryContainer.innerHTML = '';
@@ -120,7 +180,6 @@ function openCategory(cat) {
   lightbox.reload();
 }
 
-// Povratak na folder view
 backButton.addEventListener('click', () => {
   galleryContainer.style.display = 'none';
   folderContainer.style.display = 'grid';
