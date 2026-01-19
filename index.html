@@ -21,12 +21,15 @@
   section { padding:60px 20px; max-width:1200px; margin:auto; }
   h2 { text-align:center; margin-bottom:40px; }
 
-  #pocetna { text-align:center; padding:100px 20px; background:#ecf0f1; }
+  /* Početna */
+  #pocetna { text-align:center; padding:80px 20px; background:#ecf0f1; }
   #pocetna img { width:80%; max-width:700px; border-radius:15px; margin-top:20px; }
 
+  /* Recenzije */
   .recenzije { display:flex; flex-wrap:wrap; justify-content:center; gap:20px; }
   .recenzija { background:#fff; padding:20px; border-radius:10px; width:300px; box-shadow:0 2px 8px rgba(0,0,0,0.1); text-align:center; }
 
+  /* Kontakt forma */
   form { max-width:500px; margin:auto; display:flex; flex-direction:column; }
   input, textarea, button { padding:10px; margin-bottom:15px; border-radius:5px; border:1px solid #ccc; font-size:1rem; }
   button { background:#2c3e50; color:#fff; border:none; cursor:pointer; }
@@ -37,9 +40,12 @@
   .folder { background:#ecf0f1; border-radius:10px; padding:10px; text-align:center; cursor:pointer; transition:0.3s; width:160px; }
   .folder:hover { background:#e67e22; color:#fff; transform:scale(1.05); }
 
-  .folder img { width:100%; border-radius:10px; height:100px; object-fit:cover; margin-bottom:5px; }
+  .folder-thumbnails { display:grid; grid-template-columns:repeat(2,1fr); gap:5px; margin-bottom:5px; }
+  .folder-thumbnails img { width:100%; border-radius:5px; height:60px; object-fit:cover; }
+
   .folder-title { font-weight:bold; }
 
+  /* Gallery */
   .gallery { display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:15px; margin-top:20px; }
   .gallery img { width:100%; border-radius:10px; cursor:pointer; transition:0.3s; }
   .gallery img:hover { transform:scale(1.05); }
@@ -47,6 +53,7 @@
   button.back { margin-bottom:20px; padding:10px 20px; background:#2c3e50; color:#fff; border:none; border-radius:5px; cursor:pointer; }
   button.back:hover { background:#e67e22; }
 
+  /* Mapa */
   .map-container { margin:40px auto; max-width:800px; height:400px; }
   iframe { width:100%; height:100%; border:0; border-radius:10px; }
 
@@ -149,14 +156,23 @@ const folderContainer = document.getElementById('folder-container');
 const galleryContainer = document.getElementById('gallery-container');
 const backButton = document.getElementById('back-button');
 
+// Folderi sa 4 thumbnail slike
 galleries.forEach(cat => {
   const div = document.createElement('div');
   div.className = 'folder';
-  div.innerHTML = `<img src="gallery/MABH${cat.images[0]}.jpg" alt="${cat.title}"><div class="folder-title">${cat.title}</div>`;
+
+  let thumbHTML = '<div class="folder-thumbnails">';
+  cat.images.slice(0,4).forEach(num => {
+    thumbHTML += `<img src="gallery/MABH${num}.jpg" alt="${cat.title}">`;
+  });
+  thumbHTML += '</div>';
+
+  div.innerHTML = thumbHTML + `<div class="folder-title">${cat.title}</div>`;
   div.addEventListener('click', () => openCategory(cat));
   folderContainer.appendChild(div);
 });
 
+// Otvaranje kategorije
 function openCategory(cat) {
   folderContainer.style.display = 'none';
   galleryContainer.innerHTML = '';
@@ -180,6 +196,7 @@ function openCategory(cat) {
   lightbox.reload();
 }
 
+// Povratak na folder view
 backButton.addEventListener('click', () => {
   galleryContainer.style.display = 'none';
   folderContainer.style.display = 'grid';
