@@ -7,14 +7,14 @@
     <style>
         body { font-family: Arial, sans-serif; margin:0; padding:0; }
         header { background: #333; color: #fff; padding: 20px; text-align:center; }
-        nav { display: flex; justify-content: center; background: #444; flex-wrap: wrap; }
-        nav button { margin: 10px; padding: 10px 20px; cursor: pointer; border:none; background: #666; color: #fff; }
+        nav { display: flex; justify-content: center; background: #444; flex-wrap: wrap; position: sticky; top:0; z-index:100; }
+        nav button { margin: 10px; padding: 10px 20px; cursor: pointer; border:none; background: #666; color: #fff; border-radius:4px; }
         nav button:hover { background: #888; }
         section { padding: 50px 20px; text-align:center; }
-        section img { max-width: 80%; height: auto; margin-top: 20px; }
+        section img { max-width: 80%; height: auto; margin-top: 20px; border-radius:8px; }
         .lang-btn { margin-left: 5px; padding:5px 10px; cursor:pointer; background:#555; color:#fff; border:none; border-radius:4px; }
         .lang-btn:hover { background:#777; }
-        .lang-container { position: fixed; top: 10px; right: 10px; }
+        .lang-container { position: fixed; top: 10px; right: 10px; z-index: 200; }
     </style>
 </head>
 <body>
@@ -32,43 +32,36 @@
 
 <!-- Navigacija -->
 <nav>
-    <button onclick="scrollToSection('tokarenje')" id="btn-tokarenje">Tokarenje</button>
-    <button onclick="scrollToSection('glodanje')" id="btn-glodanje">Glodanje</button>
-    <button onclick="scrollToSection('rezanje')" id="btn-rezanje">Rezanje Laserom</button>
-    <button onclick="scrollToSection('brusenje')" id="btn-brusenje">Brušenje</button>
-    <button onclick="scrollToSection('ostalo')" id="btn-ostalo">Ostale usluge</button>
+    <button onclick="scrollToSection('pocetna')" id="btn-pocetna">Početna</button>
+    <button onclick="scrollToSection('onama')" id="btn-onama">O nama</button>
+    <button onclick="scrollToSection('kontakt')" id="btn-kontakt">Kontakt</button>
+    <button onclick="scrollToSection('zasto')" id="btn-zasto">Zašto mi</button>
     <button onclick="scrollToSection('recenzije')" id="btn-recenzije">Recenzije</button>
 </nav>
 
 <!-- Sekcije -->
-<section id="tokarenje">
-    <h2 id="h-tokarenje">Tokarenje</h2>
-    <img src="maonama.jpg" alt="Tokarenje">
-    <p id="p-tokarenje">Precizne usluge tokarenja za sve vrste metalnih komponenti.</p>
+<section id="pocetna">
+    <h2 id="h-pocetna">Dobrodošli u MCA2017</h2>
+    <img src="povetna.jpg" alt="Početna">
+    <p id="p-pocetna">Precizne i kvalitetne metalne usluge po vašim potrebama.</p>
 </section>
 
-<section id="glodanje">
-    <h2 id="h-glodanje">Glodanje</h2>
-    <img src="povetna.jpg" alt="Glodanje">
-    <p id="p-glodanje">Visokokvalitetno glodanje sa modernim CNC mašinama.</p>
+<section id="onama">
+    <h2 id="h-onama">O nama</h2>
+    <img src="maonama.jpg" alt="O nama">
+    <p id="p-onama">MCA2017 je firma specijalizovana za tokarenje, glodanje, rezanje laserom i brušenje metala.</p>
 </section>
 
-<section id="rezanje">
-    <h2 id="h-rezanje">Rezanje Laserom</h2>
-    <img src="maonama.jpg" alt="Rezanje Laserom">
-    <p id="p-rezanje">Brzo i precizno rezanje laserom za razne metale.</p>
+<section id="kontakt">
+    <h2 id="h-kontakt">Kontakt</h2>
+    <img src="povetna.jpg" alt="Kontakt">
+    <p id="p-kontakt">Kontaktirajte nas putem telefona ili emaila i dogovorite svoju uslugu.</p>
 </section>
 
-<section id="brusenje">
-    <h2 id="h-brusenje">Brušenje</h2>
-    <img src="povetna.jpg" alt="Brušenje">
-    <p id="p-brusenje">Kvalitetno brušenje za savršenu završnu obradu.</p>
-</section>
-
-<section id="ostalo">
-    <h2 id="h-ostalo">Ostale metalne usluge</h2>
-    <img src="maonama.jpg" alt="Ostalo">
-    <p id="p-ostalo">Svi ostali metalni radovi po vašim potrebama.</p>
+<section id="zasto">
+    <h2 id="h-zasto">Zašto mi</h2>
+    <img src="maonama.jpg" alt="Zašto mi">
+    <p id="p-zasto">Kvalitet, preciznost i zadovoljstvo klijenata su naši prioriteti.</p>
 </section>
 
 <section id="recenzije">
@@ -85,76 +78,29 @@
     const texts = {
         sr: {
             'title': 'MCA2017 - Metalne Obrade',
-            'btn-tokarenje': 'Tokarenje',
-            'btn-glodanje': 'Glodanje',
-            'btn-rezanje': 'Rezanje Laserom',
-            'btn-brusenje': 'Brušenje',
-            'btn-ostalo': 'Ostale usluge',
+            'btn-pocetna': 'Početna',
+            'btn-onama': 'O nama',
+            'btn-kontakt': 'Kontakt',
+            'btn-zasto': 'Zašto mi',
             'btn-recenzije': 'Recenzije',
-            'h-tokarenje': 'Tokarenje',
-            'p-tokarenje': 'Precizne usluge tokarenja za sve vrste metalnih komponenti.',
-            'h-glodanje': 'Glodanje',
-            'p-glodanje': 'Visokokvalitetno glodanje sa modernim CNC mašinama.',
-            'h-rezanje': 'Rezanje Laserom',
-            'p-rezanje': 'Brzo i precizno rezanje laserom za razne metale.',
-            'h-brusenje': 'Brušenje',
-            'p-brusenje': 'Kvalitetno brušenje za savršenu završnu obradu.',
-            'h-ostalo': 'Ostale metalne usluge',
-            'p-ostalo': 'Svi ostali metalni radovi po vašim potrebama.',
+            'h-pocetna': 'Dobrodošli u MCA2017',
+            'p-pocetna': 'Precizne i kvalitetne metalne usluge po vašim potrebama.',
+            'h-onama': 'O nama',
+            'p-onama': 'MCA2017 je firma specijalizovana za tokarenje, glodanje, rezanje laserom i brušenje metala.',
+            'h-kontakt': 'Kontakt',
+            'p-kontakt': 'Kontaktirajte nas putem telefona ili emaila i dogovorite svoju uslugu.',
+            'h-zasto': 'Zašto mi',
+            'p-zasto': 'Kvalitet, preciznost i zadovoljstvo klijenata su naši prioriteti.',
             'h-recenzije': 'Recenzije',
             'p-recenzije': 'Naši zadovoljni klijenti govore za nas.'
         },
         en: {
             'title': 'MCA2017 - Metal Works',
-            'btn-tokarenje': 'Turning',
-            'btn-glodanje': 'Milling',
-            'btn-rezanje': 'Laser Cutting',
-            'btn-brusenje': 'Grinding',
-            'btn-ostalo': 'Other Services',
+            'btn-pocetna': 'Home',
+            'btn-onama': 'About Us',
+            'btn-kontakt': 'Contact',
+            'btn-zasto': 'Why Us',
             'btn-recenzije': 'Reviews',
-            'h-tokarenje': 'Turning',
-            'p-tokarenje': 'Precise turning services for all types of metal components.',
-            'h-glodanje': 'Milling',
-            'p-glodanje': 'High-quality milling with modern CNC machines.',
-            'h-rezanje': 'Laser Cutting',
-            'p-rezanje': 'Fast and precise laser cutting for various metals.',
-            'h-brusenje': 'Grinding',
-            'p-brusenje': 'Quality grinding for perfect finishing.',
-            'h-ostalo': 'Other Metal Services',
-            'p-ostalo': 'All other metalworks according to your needs.',
-            'h-recenzije': 'Reviews',
-            'p-recenzije': 'Our satisfied clients speak for us.'
-        },
-        de: {
-            'title': 'MCA2017 - Metallarbeiten',
-            'btn-tokarenje': 'Drehen',
-            'btn-glodanje': 'Fräsen',
-            'btn-rezanje': 'Laserschneiden',
-            'btn-brusenje': 'Schleifen',
-            'btn-ostalo': 'Weitere Dienstleistungen',
-            'btn-recenzije': 'Bewertungen',
-            'h-tokarenje': 'Drehen',
-            'p-tokarenje': 'Präzisionsdreharbeiten für alle Arten von Metallkomponenten.',
-            'h-glodanje': 'Fräsen',
-            'p-glodanje': 'Hochwertiges Fräsen mit modernen CNC-Maschinen.',
-            'h-rezanje': 'Laserschneiden',
-            'p-rezanje': 'Schnelles und präzises Laserschneiden für verschiedene Metalle.',
-            'h-brusenje': 'Schleifen',
-            'p-brusenje': 'Qualitatives Schleifen für perfekte Oberflächen.',
-            'h-ostalo': 'Weitere Metallarbeiten',
-            'p-ostalo': 'Alle anderen Metallarbeiten nach Ihren Bedürfnissen.',
-            'h-recenzije': 'Bewertungen',
-            'p-recenzije': 'Unsere zufriedenen Kunden sprechen für uns.'
-        }
-    };
-
-    function setLang(lang) {
-        for (let id in texts[lang]) {
-            let el = document.getElementById(id);
-            if (el) el.innerText = texts[lang][id];
-        }
-    }
-</script>
-
-</body>
-</html>
+            'h-pocetna': 'Welcome to MCA2017',
+            'p-pocetna': 'Precise and quality metal services tailored to your needs.',
+            'h-o
