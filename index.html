@@ -1,223 +1,158 @@
 <!DOCTYPE html>
-<html lang="bs">
+<html lang="sr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ma-BH Namještaj po mjeri</title>
-
-<style>
-  * { margin:0; padding:0; box-sizing:border-box; }
-  body { font-family: Arial, sans-serif; background:#f8f8f8; color:#333; }
-
-  header { background:#2c3e50; color:#fff; padding:20px; text-align:center; }
-  header h1 { margin:0; }
-
-  nav { background:#34495e; }
-  nav ul { display:flex; justify-content:center; list-style:none; flex-wrap:wrap; }
-  nav ul li { margin:0 15px; }
-  nav ul li a { color:#fff; text-decoration:none; padding:15px 0; display:block; }
-  nav ul li a:hover { color:#e67e22; }
-
-  section { padding:60px 20px; max-width:1200px; margin:auto; }
-  h2 { text-align:center; margin-bottom:40px; }
-
-  /* Početna */
-  #pocetna { text-align:center; padding:80px 20px; background:#ecf0f1; }
-  #pocetna img { width:80%; max-width:700px; border-radius:15px; margin-top:20px; }
-
-  /* Recenzije */
-  .recenzije { display:flex; flex-wrap:wrap; justify-content:center; gap:20px; }
-  .recenzija { background:#fff; padding:20px; border-radius:10px; width:300px; box-shadow:0 2px 8px rgba(0,0,0,0.1); text-align:center; }
-
-  /* Kontakt forma */
-  form { max-width:500px; margin:auto; display:flex; flex-direction:column; }
-  input, textarea, button { padding:10px; margin-bottom:15px; border-radius:5px; border:1px solid #ccc; font-size:1rem; }
-  button { background:#2c3e50; color:#fff; border:none; cursor:pointer; }
-  button:hover { background:#e67e22; }
-
-  /* Folder grid */
-  .folder-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(160px,1fr)); gap:20px; justify-items:center; margin-bottom:40px; }
-  .folder { background:#ecf0f1; border-radius:10px; padding:10px; text-align:center; cursor:pointer; transition:0.3s; width:160px; }
-  .folder:hover { background:#e67e22; color:#fff; transform:scale(1.05); }
-
-  .folder-thumbnails { display:grid; grid-template-columns:repeat(2,1fr); gap:5px; margin-bottom:5px; }
-  .folder-thumbnails img { width:100%; border-radius:5px; height:60px; object-fit:cover; }
-
-  .folder-title { font-weight:bold; }
-
-  /* Gallery */
-  .gallery { display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:15px; margin-top:20px; }
-  .gallery img { width:100%; border-radius:10px; cursor:pointer; transition:0.3s; }
-  .gallery img:hover { transform:scale(1.05); }
-
-  button.back { margin-bottom:20px; padding:10px 20px; background:#2c3e50; color:#fff; border:none; border-radius:5px; cursor:pointer; }
-  button.back:hover { background:#e67e22; }
-
-  /* Mapa */
-  .map-container { margin:40px auto; max-width:800px; height:400px; }
-  iframe { width:100%; height:100%; border:0; border-radius:10px; }
-
-  footer { background:#2c3e50; color:#fff; text-align:center; padding:20px; margin-top:40px; }
-</style>
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCA2017 - Metalne Obrade</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin:0; padding:0; }
+        header { background: #333; color: #fff; padding: 20px; text-align:center; }
+        nav { display: flex; justify-content: center; background: #444; }
+        nav button { margin: 10px; padding: 10px 20px; cursor: pointer; border:none; background: #666; color: #fff; }
+        nav button:hover { background: #888; }
+        section { padding: 50px 20px; text-align:center; }
+        section img { max-width: 80%; height: auto; margin-top: 20px; }
+        .lang-btn { position: fixed; top: 10px; right: 10px; margin-left:5px; padding:5px 10px; cursor:pointer; }
+    </style>
 </head>
 <body>
 
 <header>
-  <h1>ma-BH Namještaj po mjeri</h1>
+    <h1 id="title">MCA2017 - Metalne Obrade</h1>
 </header>
 
+<!-- Jezik dugmad -->
+<div style="position: fixed; top: 10px; right: 10px;">
+    <button class="lang-btn" onclick="setLang('sr')">SR</button>
+    <button class="lang-btn" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('de')">DE</button>
+</div>
+
+<!-- Navigacija -->
 <nav>
-  <ul>
-    <li><a href="#pocetna">Početna</a></li>
-    <li><a href="#o-nama">O nama</a></li>
-    <li><a href="#recenzije">Recenzije</a></li>
-    <li><a href="#galerija">Galerija</a></li>
-    <li><a href="#kontakt">Kontakt</a></li>
-    <li><a href="#lokacija">Lokacija</a></li>
-  </ul>
+    <button onclick="scrollToSection('tokarenje')" id="btn-tokarenje">Tokarenje</button>
+    <button onclick="scrollToSection('glodanje')" id="btn-glodanje">Glodanje</button>
+    <button onclick="scrollToSection('rezanje')" id="btn-rezanje">Rezanje Laserom</button>
+    <button onclick="scrollToSection('brusenje')" id="btn-brusenje">Brušenje</button>
+    <button onclick="scrollToSection('ostalo')" id="btn-ostalo">Ostale usluge</button>
+    <button onclick="scrollToSection('recenzije')" id="btn-recenzije">Recenzije</button>
 </nav>
 
-<!-- Početna -->
-<section id="pocetna">
-  <h1>Dobrodošli u ma-BH Namještaj</h1>
-  <p>Izrada namještaja po mjeri za svaki dom – kvalitetno, precizno i po vašim željama. Naša strast je pretvoriti vaše ideje u stvarnost i unijeti toplinu u svaki prostor.</p>
-  <p>U ma-BH vjerujemo da svaki dom zaslužuje funkcionalan i estetski savršen namještaj. Bilo da planirate modernu kuhinju, elegantne plakare, komode, tapacirani namještaj ili dječije sobe, naš tim stručnjaka je spreman stvoriti proizvode koji odražavaju vaš stil i potrebe.</p>
-  <p>Koristimo samo visokokvalitetne materijale i suvremene tehnike izrade kako bismo osigurali dugotrajnost i vrhunski izgled svakog komada. Svaki projekt pažljivo planiramo, od dizajna i odabira materijala, do montaže i završnog detalja.</p>
-  <p>Vaš prostor, vaše ideje i naša stručnost – savršen spoj za jedinstveni namještaj po mjeri. Dopustite nam da zajedno stvorimo prostor u kojem ćete se osjećati ugodno, elegantno i inspirativno.</p>
-  <img src="gallery/MABH1.jpg" alt="Početna slika">
+<!-- Sekcije -->
+<section id="tokarenje">
+    <h2 id="h-tokarenje">Tokarenje</h2>
+    <img src="maonama.jpg" alt="Tokarenje">
+    <p id="p-tokarenje">Precizne usluge tokarenja za sve vrste metalnih komponenti.</p>
 </section>
 
-
-<!-- O nama -->
-<section id="o-nama">
-  <h2>O nama</h2>
-  <p>ma-BH je firma specijalizirana za izradu namještaja po mjeri sa više od deset godina iskustva u industriji. Naša misija je pružiti svakom klijentu personalizirani namještaj koji odražava njegov stil, potrebe i viziju prostora.</p>
-  
-  <p>Naš tim čine stručnjaci sa dugogodišnjim iskustvom u dizajnu, obradi drveta, tapeciranju i montaži namještaja. Svaki član tima posvećuje posebnu pažnju detaljima, kako bi konačni proizvod bio savršeno prilagođen vašim željama.</p>
-  
-  <p>Kroz godine rada razvili smo jedinstvenu filozofiju: spoj funkcionalnosti, estetike i vrhunske kvalitete. Od idejnog rješenja, izrade prototipa, odabira materijala, do završne montaže – svaki korak procesa pažljivo planiramo i provodimo.</p>
-  
-  <p>Specijalizirani smo za izradu kuhinja, plakara, komoda, tapaciranog namještaja, kreveta, polica, dječijih soba, stolova i ostalih komada namještaja po mjeri. Bez obzira na veličinu i kompleksnost projekta, naš cilj je uvijek isti – zadovoljstvo klijenta i vrhunski kvalitetan proizvod.</p>
-  
-  <p>Naša filozofija je jednostavna: personalizirani namještaj koji odražava vašu osobnost, sa vrhunskom kvalitetom i dugotrajnošću. U ma-BH, vaš san o idealnom prostoru postaje stvarnost.</p>
+<section id="glodanje">
+    <h2 id="h-glodanje">Glodanje</h2>
+    <img src="povetna.jpg" alt="Glodanje">
+    <p id="p-glodanje">Visokokvalitetno glodanje sa modernim CNC mašinama.</p>
 </section>
 
+<section id="rezanje">
+    <h2 id="h-rezanje">Rezanje Laserom</h2>
+    <img src="maonama.jpg" alt="Rezanje Laserom">
+    <p id="p-rezanje">Brzo i precizno rezanje laserom za razne metale.</p>
+</section>
 
-<!-- Recenzije -->
+<section id="brusenje">
+    <h2 id="h-brusenje">Brušenje</h2>
+    <img src="povetna.jpg" alt="Brušenje">
+    <p id="p-brusenje">Kvalitetno brušenje za savršenu završnu obradu.</p>
+</section>
+
+<section id="ostalo">
+    <h2 id="h-ostalo">Ostale metalne usluge</h2>
+    <img src="maonama.jpg" alt="Ostalo">
+    <p id="p-ostalo">Svi ostali metalni radovi po vašim potrebama.</p>
+</section>
+
 <section id="recenzije">
-  <h2>Recenzije</h2>
-  <div class="recenzije">
-    <div class="recenzija"><p>"Izvrsna usluga!"</p><strong>- Marko P.</strong></div>
-    <div class="recenzija"><p>"Savršeno odgovara mom prostoru."</p><strong>- Ana S.</strong></div>
-    <div class="recenzija"><p>"Profesionalni i ljubazni."</p><strong>- Ivica K.</strong></div>
-  </div>
+    <h2 id="h-recenzije">Recenzije</h2>
+    <img src="recenzije.jpg" alt="Recenzije">
+    <p id="p-recenzije">Naši zadovoljni klijenti govore za nas.</p>
 </section>
 
-<!-- Galerija -->
-<section id="galerija">
-  <h2>Galerija</h2>
-  <div id="folder-container" class="folder-grid"></div>
-  <div id="gallery-container" class="gallery" style="display:none;"></div>
-  <button id="back-button" class="back" style="display:none;">← Nazad na kategorije</button>
-</section>
-
-<!-- Kontakt -->
-<section id="kontakt">
-  <h2>Kontakt</h2>
-  <p>Imate pitanje ili želite dogovoriti konzultacije? Ispunite formu ispod.</p>
-  <form>
-    <input type="text" placeholder="Vaše ime" required>
-    <input type="email" placeholder="Vaš email" required>
-    <input type="text" placeholder="Predmet" required>
-    <textarea placeholder="Vaša poruka" rows="5" required></textarea>
-    <button type="submit">Pošalji</button>
-  </form>
-</section>
-
-<!-- Lokacija -->
-<section id="lokacija">
-  <h2>Naša lokacija</h2>
-  <div class="map-container">
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d..." allowfullscreen="" loading="lazy"></iframe>
-  </div>
-</section>
-
-<footer>
-  <p>&copy; 2026 ma-BH Namještaj po mjeri</p>
-</footer>
-
-<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
 <script>
-const lightbox = GLightbox({ selector: '.glightbox' });
+    function scrollToSection(id) {
+        document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    }
 
-const galleries = [
-  { title: "Kuhinje", images: [1,2,3,4,5] },
-  { title: "Američki plakari i ormari", images: [6,7,8,9,10] },
-  { title: "Komode", images: [11,12,13,14] },
-  { title: "Tapacirani namještaj", images: [15,16,17,18] },
-  { title: "Kreveti", images: [19,20,21,22] },
-  { title: "Police", images: [23,24,25,26] },
-  { title: "Banjski enterijer", images: [27,28,29,30] },
-  { title: "Pregradna vrata", images: [31,32,33,34] },
-  { title: "Dječije sobe", images: [35,36,37,38] },
-  { title: "Stolovi", images: [39,40,41,42,43,44,45,46,47] }
-];
+    const texts = {
+        sr: {
+            'title': 'MCA2017 - Metalne Obrade',
+            'btn-tokarenje': 'Tokarenje',
+            'btn-glodanje': 'Glodanje',
+            'btn-rezanje': 'Rezanje Laserom',
+            'btn-brusenje': 'Brušenje',
+            'btn-ostalo': 'Ostale usluge',
+            'btn-recenzije': 'Recenzije',
+            'h-tokarenje': 'Tokarenje',
+            'p-tokarenje': 'Precizne usluge tokarenja za sve vrste metalnih komponenti.',
+            'h-glodanje': 'Glodanje',
+            'p-glodanje': 'Visokokvalitetno glodanje sa modernim CNC mašinama.',
+            'h-rezanje': 'Rezanje Laserom',
+            'p-rezanje': 'Brzo i precizno rezanje laserom za razne metale.',
+            'h-brusenje': 'Brušenje',
+            'p-brusenje': 'Kvalitetno brušenje za savršenu završnu obradu.',
+            'h-ostalo': 'Ostale metalne usluge',
+            'p-ostalo': 'Svi ostali metalni radovi po vašim potrebama.',
+            'h-recenzije': 'Recenzije',
+            'p-recenzije': 'Naši zadovoljni klijenti govore za nas.'
+        },
+        en: {
+            'title': 'MCA2017 - Metal Works',
+            'btn-tokarenje': 'Turning',
+            'btn-glodanje': 'Milling',
+            'btn-rezanje': 'Laser Cutting',
+            'btn-brusenje': 'Grinding',
+            'btn-ostalo': 'Other Services',
+            'btn-recenzije': 'Reviews',
+            'h-tokarenje': 'Turning',
+            'p-tokarenje': 'Precise turning services for all types of metal components.',
+            'h-glodanje': 'Milling',
+            'p-glodanje': 'High-quality milling with modern CNC machines.',
+            'h-rezanje': 'Laser Cutting',
+            'p-rezanje': 'Fast and precise laser cutting for various metals.',
+            'h-brusenje': 'Grinding',
+            'p-brusenje': 'Quality grinding for perfect finishing.',
+            'h-ostalo': 'Other Metal Services',
+            'p-ostalo': 'All other metalworks according to your needs.',
+            'h-recenzije': 'Reviews',
+            'p-recenzije': 'Our satisfied clients speak for us.'
+        },
+        de: {
+            'title': 'MCA2017 - Metallarbeiten',
+            'btn-tokarenje': 'Drehen',
+            'btn-glodanje': 'Fräsen',
+            'btn-rezanje': 'Laserschneiden',
+            'btn-brusenje': 'Schleifen',
+            'btn-ostalo': 'Weitere Dienstleistungen',
+            'btn-recenzije': 'Bewertungen',
+            'h-tokarenje': 'Drehen',
+            'p-tokarenje': 'Präzisionsdreharbeiten für alle Arten von Metallkomponenten.',
+            'h-glodanje': 'Fräsen',
+            'p-glodanje': 'Hochwertiges Fräsen mit modernen CNC-Maschinen.',
+            'h-rezanje': 'Laserschneiden',
+            'p-rezanje': 'Schnelles und präzises Laserschneiden für verschiedene Metalle.',
+            'h-brusenje': 'Schleifen',
+            'p-brusenje': 'Qualitatives Schleifen für perfekte Oberflächen.',
+            'h-ostalo': 'Weitere Metallarbeiten',
+            'p-ostalo': 'Alle anderen Metallarbeiten nach Ihren Bedürfnissen.',
+            'h-recenzije': 'Bewertungen',
+            'p-recenzije': 'Unsere zufriedenen Kunden sprechen für uns.'
+        }
+    };
 
-const folderContainer = document.getElementById('folder-container');
-const galleryContainer = document.getElementById('gallery-container');
-const backButton = document.getElementById('back-button');
-
-// Folderi sa 4 thumbnail slike
-galleries.forEach(cat => {
-  const div = document.createElement('div');
-  div.className = 'folder';
-
-  let thumbHTML = '<div class="folder-thumbnails">';
-  cat.images.slice(0,4).forEach(num => {
-    thumbHTML += `<img src="gallery/MABH${num}.jpg" alt="${cat.title}">`;
-  });
-  thumbHTML += '</div>';
-
-  div.innerHTML = thumbHTML + `<div class="folder-title">${cat.title}</div>`;
-  div.addEventListener('click', () => openCategory(cat));
-  folderContainer.appendChild(div);
-});
-
-// Otvaranje kategorije
-function openCategory(cat) {
-  folderContainer.style.display = 'none';
-  galleryContainer.innerHTML = '';
-  galleryContainer.style.display = 'grid';
-  backButton.style.display = 'inline-block';
-
-  cat.images.forEach(num => {
-    const a = document.createElement('a');
-    a.href = `gallery/MABH${num}.jpg`;
-    a.className = 'glightbox';
-    a.dataset.gallery = cat.title.replace(/\s+/g,'-').toLowerCase();
-
-    const img = document.createElement('img');
-    img.src = `gallery/MABH${num}.jpg`;
-    img.alt = cat.title;
-
-    a.appendChild(img);
-    galleryContainer.appendChild(a);
-  });
-
-  lightbox.reload();
-}
-
-// Povratak na folder view
-backButton.addEventListener('click', () => {
-  galleryContainer.style.display = 'none';
-  folderContainer.style.display = 'grid';
-  backButton.style.display = 'none';
-});
+    function setLang(lang) {
+        for (let id in texts[lang]) {
+            let el = document.getElementById(id);
+            if (el) el.innerText = texts[lang][id];
+        }
+    }
 </script>
 
 </body>
 </html>
-
-
