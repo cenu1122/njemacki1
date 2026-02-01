@@ -7,12 +7,14 @@
     <style>
         body { font-family: Arial, sans-serif; margin:0; padding:0; }
         header { background: #333; color: #fff; padding: 20px; text-align:center; }
-        nav { display: flex; justify-content: center; background: #444; }
+        nav { display: flex; justify-content: center; background: #444; flex-wrap: wrap; }
         nav button { margin: 10px; padding: 10px 20px; cursor: pointer; border:none; background: #666; color: #fff; }
         nav button:hover { background: #888; }
         section { padding: 50px 20px; text-align:center; }
         section img { max-width: 80%; height: auto; margin-top: 20px; }
-        .lang-btn { position: fixed; top: 10px; right: 10px; margin-left:5px; padding:5px 10px; cursor:pointer; }
+        .lang-btn { margin-left: 5px; padding:5px 10px; cursor:pointer; background:#555; color:#fff; border:none; border-radius:4px; }
+        .lang-btn:hover { background:#777; }
+        .lang-container { position: fixed; top: 10px; right: 10px; }
     </style>
 </head>
 <body>
@@ -22,7 +24,7 @@
 </header>
 
 <!-- Jezik dugmad -->
-<div style="position: fixed; top: 10px; right: 10px;">
+<div class="lang-container">
     <button class="lang-btn" onclick="setLang('sr')">SR</button>
     <button class="lang-btn" onclick="setLang('en')">EN</button>
     <button class="lang-btn" onclick="setLang('de')">DE</button>
