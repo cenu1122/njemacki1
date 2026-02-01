@@ -34,11 +34,11 @@
 
 <!-- Navigacija -->
 <nav>
-    <button data-section="pocetna">Početna</button>
-    <button data-section="onama">O nama</button>
-    <button data-section="kontakt">Kontakt</button>
-    <button data-section="zasto">Zašto mi</button>
-    <button data-section="recenzije">Recenzije</button>
+    <button onclick="scrollToSection('pocetna')">Početna</button>
+    <button onclick="scrollToSection('onama')">O nama</button>
+    <button onclick="scrollToSection('kontakt')">Kontakt</button>
+    <button onclick="scrollToSection('zasto')">Zašto mi</button>
+    <button onclick="scrollToSection('recenzije')">Recenzije</button>
 </nav>
 
 <!-- Sekcije -->
@@ -52,69 +52,46 @@
     <h2 id="h-onama">O nama</h2>
     <img src="maonama.jpg" alt="O nama">
     <p id="p-onama">MCA2017 je firma specijalizovana za tokarenje, glodanje, rezanje laserom i brušenje metala.</p>
-    <a class="back-btn" href="#pocetna">Nazad na početnu</a>
+    <a class="back-btn" onclick="scrollToSection('pocetna')">Nazad na početnu</a>
 </section>
 
 <section id="kontakt">
     <h2 id="h-kontakt">Kontakt</h2>
     <img src="povetna.jpg" alt="Kontakt">
     <p id="p-kontakt">Kontaktirajte nas putem telefona ili emaila i dogovorite svoju uslugu.</p>
-    <a class="back-btn" href="#pocetna">Nazad na početnu</a>
+    <a class="back-btn" onclick="scrollToSection('pocetna')">Nazad na početnu</a>
 </section>
 
 <section id="zasto">
     <h2 id="h-zasto">Zašto mi</h2>
     <img src="maonama.jpg" alt="Zašto mi">
     <p id="p-zasto">Kvalitet, preciznost i zadovoljstvo klijenata su naši prioriteti.</p>
-    <a class="back-btn" href="#pocetna">Nazad na početnu</a>
+    <a class="back-btn" onclick="scrollToSection('pocetna')">Nazad na početnu</a>
 </section>
 
 <section id="recenzije">
     <h2 id="h-recenzije">Recenzije</h2>
     <img src="recenzije.jpg" alt="Recenzije">
     <p id="p-recenzije">Naši zadovoljni klijenti govore za nas.</p>
-    <a class="back-btn" href="#pocetna">Nazad na početnu</a>
+    <a class="back-btn" onclick="scrollToSection('pocetna')">Nazad na početnu</a>
 </section>
 
 <script>
-    // Funkcija za scroll na sekciju
-    document.querySelectorAll('nav button').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const id = btn.getAttribute('data-section');
-            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-        });
-    });
+    // Funkcija za scroll
+    function scrollToSection(id){
+        const el = document.getElementById(id);
+        if(el){ el.scrollIntoView({behavior: 'smooth'}); }
+    }
 
-    // Funkcija za promjenu jezika
+    // Funkcija za promenu jezika
     const texts = {
-        sr: {
-            'title': 'MCA2017 - Metalne Obrade', 'btn-pocetna': 'Početna', 'btn-onama': 'O nama', 'btn-kontakt': 'Kontakt', 'btn-zasto': 'Zašto mi', 'btn-recenzije': 'Recenzije',
-            'h-pocetna': 'Dobrodošli u MCA2017', 'p-pocetna': 'Precizne i kvalitetne metalne usluge po vašim potrebama.',
-            'h-onama': 'O nama', 'p-onama': 'MCA2017 je firma specijalizovana za tokarenje, glodanje, rezanje laserom i brušenje metala.',
-            'h-kontakt': 'Kontakt', 'p-kontakt': 'Kontaktirajte nas putem telefona ili emaila i dogovorite svoju uslugu.',
-            'h-zasto': 'Zašto mi', 'p-zasto': 'Kvalitet, preciznost i zadovoljstvo klijenata su naši prioriteti.',
-            'h-recenzije': 'Recenzije', 'p-recenzije': 'Naši zadovoljni klijenti govore za nas.'
-        },
-        en: {
-            'title': 'MCA2017 - Metal Works', 'btn-pocetna': 'Home', 'btn-onama': 'About Us', 'btn-kontakt': 'Contact', 'btn-zasto': 'Why Us', 'btn-recenzije': 'Reviews',
-            'h-pocetna': 'Welcome to MCA2017', 'p-pocetna': 'Precise and quality metal services tailored to your needs.',
-            'h-onama': 'About Us', 'p-onama': 'MCA2017 specializes in turning, milling, laser cutting, and grinding of metals.',
-            'h-kontakt': 'Contact', 'p-kontakt': 'Contact us via phone or email to arrange your service.',
-            'h-zasto': 'Why Us', 'p-zasto': 'Quality, precision, and client satisfaction are our priorities.',
-            'h-recenzije': 'Reviews', 'p-recenzije': 'Our satisfied clients speak for us.'
-        },
-        de: {
-            'title': 'MCA2017 - Metallarbeiten', 'btn-pocetna': 'Startseite', 'btn-onama': 'Über uns', 'btn-kontakt': 'Kontakt', 'btn-zasto': 'Warum wir', 'btn-recenzije': 'Bewertungen',
-            'h-pocetna': 'Willkommen bei MCA2017', 'p-pocetna': 'Präzise und qualitativ hochwertige Metallarbeiten nach Ihren Bedürfnissen.',
-            'h-onama': 'Über uns', 'p-onama': 'MCA2017 ist spezialisiert auf Drehen, Fräsen, Laserschneiden und Schleifen von Metallen.',
-            'h-kontakt': 'Kontakt', 'p-kontakt': 'Kontaktieren Sie uns telefonisch oder per E-Mail, um Ihren Service zu vereinbaren.',
-            'h-zasto': 'Warum wir', 'p-zasto': 'Qualität, Präzision und Kundenzufriedenheit sind unsere Priorität.',
-            'h-recenzije': 'Bewertungen', 'p-recenzije': 'Unsere zufriedenen Kunden sprechen für uns.'
-        }
+        sr: { 'title':'MCA2017 - Metalne Obrade', 'h-pocetna':'Dobrodošli u MCA2017','p-pocetna':'Precizne i kvalitetne metalne usluge po vašim potrebama.', 'h-onama':'O nama','p-onama':'MCA2017 je firma specijalizovana za tokarenje, glodanje, rezanje laserom i brušenje metala.', 'h-kontakt':'Kontakt','p-kontakt':'Kontaktirajte nas putem telefona ili emaila i dogovorite svoju uslugu.', 'h-zasto':'Zašto mi','p-zasto':'Kvalitet, preciznost i zadovoljstvo klijenata su naši prioriteti.','h-recenzije':'Recenzije','p-recenzije':'Naši zadovoljni klijenti govore za nas.'},
+        en: { 'title':'MCA2017 - Metal Works', 'h-pocetna':'Welcome to MCA2017','p-pocetna':'Precise and quality metal services tailored to your needs.','h-onama':'About Us','p-onama':'MCA2017 specializes in turning, milling, laser cutting, and grinding of metals.','h-kontakt':'Contact','p-kontakt':'Contact us via phone or email to arrange your service.','h-zasto':'Why Us','p-zasto':'Quality, precision, and client satisfaction are our priorities.','h-recenzije':'Reviews','p-recenzije':'Our satisfied clients speak for us.'},
+        de: { 'title':'MCA2017 - Metallarbeiten', 'h-pocetna':'Willkommen bei MCA2017','p-pocetna':'Präzise und qualitativ hochwertige Metallarbeiten nach Ihren Bedürfnissen.','h-onama':'Über uns','p-onama':'MCA2017 ist spezialisiert auf Drehen, Fräsen, Laserschneiden und Schleifen von Metallen.','h-kontakt':'Kontakt','p-kontakt':'Kontaktieren Sie uns telefonisch oder per E-Mail, um Ihren Service zu vereinbaren.','h-zasto':'Warum wir','p-zasto':'Qualität, Präzision und Kundenzufriedenheit sind unsere Priorität.','h-recenzije':'Bewertungen','p-recenzije':'Unsere zufriedenen Kunden sprechen für uns.'}
     };
 
-    function setLang(lang) {
-        for(let id in texts[lang]) {
+    function setLang(lang){
+        for(const id in texts[lang]){
             const el = document.getElementById(id);
             if(el) el.innerText = texts[lang][id];
         }
