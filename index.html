@@ -4,21 +4,118 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MCA2017 - Metalne Obrade</title>
+
     <style>
-        body { font-family: Arial, sans-serif; margin:0; padding:0; scroll-behavior: smooth; }
-        header { background: #333; color: #fff; padding: 20px; text-align:center; }
-        nav { display: flex; justify-content: center; background: #444; flex-wrap: wrap; position: sticky; top:0; z-index:100; }
-        nav button { margin: 10px; padding: 10px 20px; cursor: pointer; border:none; background: #666; color: #fff; border-radius:4px; }
-        nav button:hover { background: #888; }
-        section { padding: 50px 20px; text-align:center; min-height:400px; }
-        section img { max-width: 80%; height: auto; margin-top: 20px; border-radius:8px; }
-        .lang-btn { margin-left: 5px; padding:5px 10px; cursor:pointer; background:#555; color:#fff; border:none; border-radius:4px; }
-        .lang-btn:hover { background:#777; }
-        .lang-container { position: fixed; top: 10px; right: 10px; z-index: 200; }
-        .back-btn { display:inline-block; margin-top:20px; padding:10px 20px; background:#666; color:#fff; border-radius:4px; cursor:pointer; text-decoration:none; }
-        .back-btn:hover { background:#888; }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        header {
+            background: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background: #444;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav button {
+            margin: 10px;
+            padding: 10px 20px;
+            cursor: pointer;
+            border: none;
+            background: #666;
+            color: #fff;
+            border-radius: 4px;
+        }
+
+        nav button:hover {
+            background: #888;
+        }
+
+        section {
+            padding: 50px 20px;
+            text-align: center;
+            min-height: 400px;
+        }
+
+        section img {
+            max-width: 80%;
+            height: auto;
+            margin-top: 20px;
+            border-radius: 8px;
+        }
+
+        .lang-container {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 200;
+        }
+
+        .lang-btn {
+            margin-left: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+            background: #555;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+        }
+
+        .lang-btn:hover {
+            background: #777;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #666;
+            color: #fff;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .back-btn:hover {
+            background: #888;
+        }
+
+        /* ===== GALERIJA ===== */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+            padding: 0 20px;
+        }
+
+        .gallery img {
+            width: 100%;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
     </style>
 </head>
+
 <body>
 
 <header>
@@ -35,70 +132,121 @@
     <button onclick="scrollToSection('pocetna')">Početna</button>
     <button onclick="scrollToSection('onama')">O nama</button>
     <button onclick="scrollToSection('zasto')">Zašto mi</button>
+    <button onclick="scrollToSection('galerija')">Galerija</button>
     <button onclick="scrollToSection('recenzije')">Recenzije</button>
     <button onclick="scrollToSection('kontakt')">Kontakt</button>
 </nav>
 
 <section id="pocetna">
     <h2 id="h-pocetna">Dobrodošli u MCA2017</h2>
-    <img id="img-pocetna" src="povetna.png" alt="Početna">
+    <img src="pocetna.png" alt="Početna">
     <p id="p-pocetna">Precizne i kvalitetne metalne usluge po vašim potrebama.</p>
 </section>
 
 <section id="onama">
     <h2 id="h-onama">O nama</h2>
-    <img id="img-onama" src="maonama.png" alt="O nama">
-    <p id="p-onama">MCA2017 je firma specijalizovana za tokarenje, glodanje, rezanje laserom i brušenje metala.</p>
+    <img src="onama.png" alt="O nama">
+    <p id="p-onama">
+        MCA2017 je firma specijalizovana za tokarenje, glodanje,
+        rezanje laserom i brušenje metala.
+    </p>
     <a class="back-btn" onclick="scrollToSection('pocetna')">Nazad na početnu</a>
 </section>
 
 <section id="zasto">
     <h2 id="h-zasto">Zašto mi</h2>
-    <img id="img-zasto" src="zastomi.png" alt="Zašto mi">
-    <p id="p-zasto">Kvalitet, preciznost i zadovoljstvo klijenata su naši prioriteti.</p>
+    <img src="zastomi.png" alt="Zašto mi">
+    <p id="p-zasto">
+        Kvalitet, preciznost i zadovoljstvo klijenata su naši prioriteti.
+    </p>
+    <a class="back-btn" onclick="scrollToSection('pocetna')">Nazad na početnu</a>
+</section>
+
+<!-- ===== GALERIJA ===== -->
+<section id="galerija">
+    <h2 id="h-galerija">Galerija</h2>
+
+    <div class="gallery">
+        <img src="tokarenje1.png" alt="Tokarenje">
+        <img src="REZANJELASEROM.png" alt="Rezanje laserom">
+        <img src="tijarebhe.png" alt="Obrada metala">
+        <img src="usluge.png" alt="Usluge">
+    </div>
+
     <a class="back-btn" onclick="scrollToSection('pocetna')">Nazad na početnu</a>
 </section>
 
 <section id="recenzije">
     <h2 id="h-recenzije">Recenzije</h2>
-    <img id="img-recenzije" src="recenzije.png" alt="Recenzije">
+    <img src="recenzije.png" alt="Recenzije">
     <p id="p-recenzije">Naši zadovoljni klijenti govore za nas.</p>
     <a class="back-btn" onclick="scrollToSection('pocetna')">Nazad na početnu</a>
 </section>
 
 <section id="kontakt">
     <h2 id="h-kontakt">Kontakt</h2>
-    <img id="img-kontakt" src="kontakt.png" alt="Kontakt">
-    <p id="p-kontakt">Kontaktirajte nas putem telefona ili emaila i dogovorite svoju uslugu.</p>
+    <img src="kontakt.png" alt="Kontakt">
+    <p id="p-kontakt">
+        Kontaktirajte nas putem telefona ili emaila i dogovorite svoju uslugu.
+    </p>
     <a class="back-btn" onclick="scrollToSection('pocetna')">Nazad na početnu</a>
 </section>
 
 <script>
-    function scrollToSection(id){
+    function scrollToSection(id) {
         const el = document.getElementById(id);
-        if(el){ el.scrollIntoView({behavior: 'smooth'}); }
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
     }
 
     const texts = {
         sr: {
-            'title':'MCA2017 - Metalne Obrade','h-pocetna':'Dobrodošli u MCA2017','p-pocetna':'Precizne i kvalitetne metalne usluge po vašim potrebama.',
-            'h-onama':'O nama','p-onama':'MCA2017 je firma specijalizovana za tokarenje, glodanje, rezanje laserom i brušenje metala.',
-            'h-zasto':'Zašto mi','p-zasto':'Kvalitet, preciznost i zadovoljstvo klijenata su naši prioriteti.',
-            'h-recenzije':'Recenzije','p-recenzije':'Naši zadovoljni klijenti govore za nas.',
-            'h-kontakt':'Kontakt','p-kontakt':'Kontaktirajte nas putem telefona ili emaila i dogovorite svoju uslugu.'
+            title: "MCA2017 - Metalne Obrade",
+            "h-pocetna": "Dobrodošli u MCA2017",
+            "p-pocetna": "Precizne i kvalitetne metalne usluge po vašim potrebama.",
+            "h-onama": "O nama",
+            "p-onama": "MCA2017 je firma specijalizovana za tokarenje, glodanje, rezanje laserom i brušenje metala.",
+            "h-zasto": "Zašto mi",
+            "p-zasto": "Kvalitet, preciznost i zadovoljstvo klijenata su naši prioriteti.",
+            "h-galerija": "Galerija",
+            "h-recenzije": "Recenzije",
+            "p-recenzije": "Naši zadovoljni klijenti govore za nas.",
+            "h-kontakt": "Kontakt",
+            "p-kontakt": "Kontaktirajte nas putem telefona ili emaila i dogovorite svoju uslugu."
         },
         en: {
-            'title':'MCA2017 - Metal Works','h-pocetna':'Welcome to MCA2017','p-pocetna':'Precise and quality metal services tailored to your needs.','h-onama':'About Us','p-onama':'MCA2017 specializes in turning, milling, laser cutting, and grinding of metals.','h-zasto':'Why Us','p-zasto':'Quality, precision, and client satisfaction are our priorities.','h-recenzije':'Reviews','p-recenzije':'Our satisfied clients speak for us.','h-kontakt':'Contact','p-kontakt':'Contact us via phone or email to arrange your service.'
+            title: "MCA2017 - Metal Works",
+            "h-pocetna": "Welcome to MCA2017",
+            "p-pocetna": "Precise and quality metal services tailored to your needs.",
+            "h-onama": "About Us",
+            "p-onama": "MCA2017 specializes in turning, milling, laser cutting and metal grinding.",
+            "h-zasto": "Why Us",
+            "p-zasto": "Quality, precision and customer satisfaction are our priorities.",
+            "h-galerija": "Gallery",
+            "h-recenzije": "Reviews",
+            "p-recenzije": "Our satisfied clients speak for us.",
+            "h-kontakt": "Contact",
+            "p-kontakt": "Contact us by phone or email to arrange your service."
         },
         de: {
-            'title':'MCA2017 - Metallarbeiten','h-pocetna':'Willkommen bei MCA2017','p-pocetna':'Präzise und qualitativ hochwertige Metallarbeiten nach Ihren Bedürfnissen.','h-onama':'Über uns','p-onama':'MCA2017 ist spezialisiert auf Drehen, Fräsen, Laserschneiden und Schleifen von Metallen.','h-zasto':'Warum wir','p-zasto':'Qualität, Präzision und Kundenzufriedenheit sind unsere Priorität.','h-recenzije':'Bewertungen','p-recenzije':'Unsere zufriedenen Kunden sprechen für uns.','h-kontakt':'Kontakt','p-kontakt':'Kontaktieren Sie uns telefonisch oder per E-Mail, um Ihren Service zu vereinbaren.'
+            title: "MCA2017 - Metallarbeiten",
+            "h-pocetna": "Willkommen bei MCA2017",
+            "p-pocetna": "Präzise und hochwertige Metallarbeiten nach Ihren Bedürfnissen.",
+            "h-onama": "Über uns",
+            "p-onama": "MCA2017 ist spezialisiert auf Drehen, Fräsen, Laserschneiden und Schleifen von Metallen.",
+            "h-zasto": "Warum wir",
+            "p-zasto": "Qualität, Präzision und Kundenzufriedenheit sind unsere Priorität.",
+            "h-galerija": "Galerie",
+            "h-recenzije": "Bewertungen",
+            "p-recenzije": "Unsere zufriedenen Kunden sprechen für uns.",
+            "h-kontakt": "Kontakt",
+            "p-kontakt": "Kontaktieren Sie uns telefonisch oder per E-Mail."
         }
     };
 
-    function setLang(lang){
-        for(const id in texts[lang]){
+    function setLang(lang) {
+        for (const id in texts[lang]) {
             const el = document.getElementById(id);
-            if(el) el.innerText = texts[lang][id];
+            if (el) el.innerText = texts[lang][id];
         }
     }
 </script>
